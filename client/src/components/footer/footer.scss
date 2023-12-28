@@ -1,0 +1,29 @@
+.part1{
+    h1{
+        
+    }
+}
+.part2{
+    .discoverOptions{
+        display: flex;
+        list-style: none;
+        flex: wrap;
+        gap: 0.25rem;
+        li{
+            border: 1px solid gray;
+            padding: 0.25rem;
+        }
+    }
+}
+.part3{
+    .contactOptions{
+        display: flex;
+        
+        flex: wrap;
+        gap: 0.25rem;
+        li{
+            list-style: none;
+            
+        }
+    }
+}
