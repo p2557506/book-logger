@@ -21,9 +21,19 @@ nav{
 
     .navOptions{
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
         list-style: none;
         font-size: 1.25rem;
+
+        li{
+            cursor: pointer;
+            border-bottom: solid 1px transparent;
+            transition: 0.2s;
+
+            &:hover{
+                border-bottom: solid 1px black;
+            }
+        }
         
     }
 

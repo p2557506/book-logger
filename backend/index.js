@@ -1,5 +1,6 @@
 import express from "express"
 import mysql from "mysql"
+import cors from "cors"
 
 const app = express();
 
@@ -12,6 +13,7 @@ const db = mysql.createConnection({
 
 //Middleware to send data to express server
 app.use(express.json())
+app.use(cors())
 //Make api request using express server
 
 app.get("/", (req,res)=>{

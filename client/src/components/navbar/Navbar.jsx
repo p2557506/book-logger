@@ -1,5 +1,6 @@
 import React from 'react'
 import "./navbar.scss"
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <nav>
@@ -7,7 +8,7 @@ const Navbar = () => {
         <input type="text" placeholder="Search Books"/>
         <ul className="navOptions">
             <li>Home</li>
-            <li>Browse</li>
+            <li><Link to={"/browse"}>Browse</Link></li>
             <li>Backlog</li>
             <li>Wishlist</li>
         </ul>
