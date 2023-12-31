@@ -28,6 +28,17 @@ app.get("/books", (req,res)=>{
     })
 })
 
+app.get("/books/:id", (req,res)=>{
+    const bookId = req.params.id
+    const q = "SELECT * FROM books WHERE id = ?"
+    db.query(q,[bookId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+
+
 app.post("/books",(req,res)=>{
     const q= "INSERT INTO books(`title`,`desc`,`cover`) VALUES (?)"
     const values = [
@@ -40,6 +51,59 @@ app.post("/books",(req,res)=>{
         return res.json(data)
     })
 })
+/////
+
+//Backlog DB
+app.get("/backlog", (req,res)=>{
+    const q = "SELECT * FROM backlog"
+    
+    db.query(q,(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/backlog", (req,res)=>{
+    const q = "INSERT INTO backlog(`title`,`desc`,`cover`) VALUES (?)"
+    const values = [
+        req.body.title,
+        req.body.desc,
+        req.body.cover,
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+/////
+
+//Wishlist DB
+app.get("/wishlist", (req,res)=>{
+    const q = "SELECT * FROM wishlist"
+    
+    db.query(q,(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/wishlist", (req,res)=>{
+    const q = "INSERT INTO wishlist(`title`,`desc`,`cover`) VALUES (?)"
+    const values = [
+        req.body.title,
+        req.body.desc,
+        req.body.cover,
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+////
+
+
+
 
 app.listen(8800, ()=>{
     console.log("Wishlist,Backlog and Archive Books")

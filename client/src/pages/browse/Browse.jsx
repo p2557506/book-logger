@@ -18,6 +18,8 @@ import Tooltip from '@mui/material/Tooltip';
 import "./browse.scss"
 
 import AllBooks from '../allBooks/AllBooks';
+import Backlog from '../backlog/Backlog';
+import Wishlist from '../wishlist/Wishlist';
 
 const Browse = () => {
 
@@ -26,7 +28,12 @@ const Browse = () => {
     const PageDisplay = () =>{
         if(page === 0){
             return <AllBooks/>
+        } else if(page === 1){
+        return <Backlog/>
+        }else{
+            return <Wishlist/>
         }
+        
     }
 
     const [books,setBooks] = useState([]);
@@ -48,7 +55,7 @@ const Browse = () => {
   return (
     <div>
         <Navbar/>
-        <header>
+        <header className="browseHeader">
             <h1>{headerTitles[page]}</h1>
             <div className="choiceLinks">
                 <div className="choice" onClick={()=> setPage(0)}><p>Books Database</p></div>
@@ -57,7 +64,7 @@ const Browse = () => {
             </div>
         </header>
         
-        <div>{PageDisplay()}</div>
+        <div className="pageDisplay">{PageDisplay()}</div>
 
         <Footer/>
     </div>

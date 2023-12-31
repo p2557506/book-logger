@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 //Reading States Reading,Finished,Booklog,Wishlist
 import BookmarkIcon from '@mui/icons-material/Bookmark';//Reading
@@ -14,53 +15,49 @@ import Tooltip from '@mui/material/Tooltip';
 
 const AllBooks = () => {
 
-  const [books,setBooks] = useState([]);
-
+    
+    const [books,setBooks] = useState([]);
+  
+    const [bookie,setBookie] = useState()
+    
+  
+    
+    
+    
+    const handleClick = async (e) =>{
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:8800/backlog", bookie);
+            
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }
+    
     useEffect(()=>{
         const fetchAllBooks = async  () =>{
             try {
                 const res = await axios.get("http://localhost:8800/books")
                 console.log(res.data)
                 setBooks(res.data)
+                setBookie(res.data[0])
             } catch (err) {
                 console.log(err)
             }
         }
         fetchAllBooks()
     },[])
-
-  return (
     
-      <div className='booksDisplay'>
+    return (
+        
+        <div className='booksDisplay'>
             
             <div className="booksContainer">
                 {books.map(book => (
                     <div className="bookItem" key={book.id}>
-                        <img src={book.cover} alt="" />
-                        <div className="title">{book.title}</div>
-                        <div className="readingState">
-                        <div className="state">
-                                <Tooltip title="Reading" arrow>
-                                    <Button><BookmarkIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Finished" arrow>
-                                    <Button><BeenhereIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Wishlist" arrow>
-                                    <Button><StarIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Backlog" arrow>
-                                    <Button><InventoryIcon/></Button>
-                                </Tooltip>
-                            </div>
-                        </div>
-                        
+                        <Link to={`/books/${book.id}`}><img src={book.cover} alt="" /></Link>
+                           
                     </div>
                 ))}
             </div>

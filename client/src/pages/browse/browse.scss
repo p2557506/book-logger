@@ -1,4 +1,4 @@
-header{
+.browseHeader{
     h1{
         margin-bottom: 2rem;
     }
@@ -7,6 +7,8 @@ header{
     align-items: center;
     padding: 2rem;
     border-bottom: solid 1px black;
+    background-color: #6B6B6B;
+    color: white;
     .choiceLinks{
         display: flex;
         gap: 2rem;
@@ -29,14 +31,21 @@ header{
     justify-content: center;
     padding: 1rem 0;
     gap: 2rem;
+    height: 100vh;
+    background-color: #6B6B6B;
+    color: white;
     .booksContainer{
         display: grid;
-        grid-template-columns: repeat(4,300px);
+        grid-template-columns: repeat(5,150px);
+        grid-auto-rows: 300px;
+        gap: 1rem;
         .bookItem{
 
             img{
                 width: 150px;
                 height: auto;
+                border: 1px solid white;
+                border-radius: 5px;
             }
 
             .readingState{

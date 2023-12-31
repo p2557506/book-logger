@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.body{
+    display: flex;
+    justify-content: space-between;
+
+    .collectionContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+
+        img{
+            width: 250px;
+            height: auto;
+            border-radius: .25rem;
+        }
+
+        .readingState{
+            display: flex;
+            border: solid 1px gray;
+            border-radius: .25rem;
+        }
+    }
+}
+
+
+.bookHeader{
+    h1{
+        font-size: 3rem;
+    }
+
+    p{
+
+    }
+}
