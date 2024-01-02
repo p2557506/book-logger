@@ -11,11 +11,12 @@ import StarIcon from '@mui/icons-material/Star';
 
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
 const Backlog = () => {
   const [backlogs,setBacklog] = useState([]);
 
-  
+  const [searchTerm,setSearchTerm] = useState("");
 
     useEffect(()=>{
         const fetchAllBacklog = async  () =>{
@@ -30,54 +31,35 @@ const Backlog = () => {
         fetchAllBacklog()
     },[])
 
+    const handleChange = (e) =>{
+        setSearchTerm(e.target.value);
+
+    }
+    
+
   return (
     
       <div className='booksDisplay'>
             
             <div className="booksContainer">
-                {backlogs.map(backlog => (
+                {backlogs.filter((book) =>{
+
+                    if(searchTerm == ""){
+                        return book;
+                    } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return book
+                    }
+
+                    }).map(backlog => (
                     <div className="bookItem" key={backlog.id}>
                         <img src={backlog.cover} alt="" />
                         <div className="title">{backlog.title}</div>
-                        <div className="readingState">
-                        <div className="state" >
-                                <Tooltip title="Reading" arrow>
-                                    <Button><BookmarkIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Finished" arrow>
-                                    <Button><BeenhereIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Wishlist" arrow>
-                                    <Button><StarIcon/></Button>
-                                </Tooltip>
-                            </div>
-                            <div className="state">
-                                <Tooltip title="Backlog" arrow>
-                                    <Button><InventoryIcon/></Button>
-                                </Tooltip>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 ))}
             </div>
-            <div className="filteringToolContainer">
-                <input type="text" placeholder='Search by name'/>
-                <div className="genreFilterBox">
-                    <h3>Genres</h3>
-                    <input type="text"  placeholder="Search by genre"/>
-                    <ul>
-                        <li>Adventure</li>
-                        <li>Fantasy</li>
-                        <li>Biography</li>
-                        <li>Sci-Fi</li>
-                    </ul>
-                </div>
-            </div>
+            <FilteringSideBar handleChange ={handleChange}/>
       </div>
     
   )

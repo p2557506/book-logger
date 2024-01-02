@@ -1,0 +1,27 @@
+.filteringToolContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    input{
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+    .genreFilterBox{
+        border: solid 1px gray;
+        padding: 0.5rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        ul{
+            li{
+                list-style: none;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: lightgray;
+                }
+            }
+        }
+    }
+}

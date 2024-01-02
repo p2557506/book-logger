@@ -52,6 +52,8 @@ const Browse = () => {
     },[])
 
     
+
+    
   return (
     <div>
         <Navbar/>

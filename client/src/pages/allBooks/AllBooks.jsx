@@ -12,27 +12,20 @@ import StarIcon from '@mui/icons-material/Star';
 
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
 const AllBooks = () => {
 
     
     const [books,setBooks] = useState([]);
   
-    const [bookie,setBookie] = useState()
-    
-  
-    
-    
-    
-    const handleClick = async (e) =>{
-        e.preventDefault();
-        try {
-            const res = await axios.post("http://localhost:8800/backlog", bookie);
-            
-        } catch (err) {
-            console.log(err)
-        }
-        
+    const [bookie,setBookie] = useState();
+
+    const [searchTerm,setSearchTerm] = useState("");
+
+    const handleChange = (e) =>{
+        setSearchTerm(e.target.value);
+
     }
     
     useEffect(()=>{
@@ -54,26 +47,22 @@ const AllBooks = () => {
         <div className='booksDisplay'>
             
             <div className="booksContainer">
-                {books.map(book => (
+                {books.filter((book) =>{
+
+                    if(searchTerm == ""){
+                        return book;
+                    } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return book
+                    }
+                    
+                }).map(book => (
                     <div className="bookItem" key={book.id}>
                         <Link to={`/books/${book.id}`}><img src={book.cover} alt="" /></Link>
                            
                     </div>
                 ))}
             </div>
-            <div className="filteringToolContainer">
-                <input type="text" placeholder='Search by name'/>
-                <div className="genreFilterBox">
-                    <h3>Genres</h3>
-                    <input type="text"  placeholder="Search by genre"/>
-                    <ul>
-                        <li>Adventure</li>
-                        <li>Fantasy</li>
-                        <li>Biography</li>
-                        <li>Sci-Fi</li>
-                    </ul>
-                </div>
-            </div>
+            <FilteringSideBar handleChange = {handleChange}/>
       </div>
     
   )
