@@ -14,6 +14,14 @@
     justify-content: flex-start;
     padding: 1rem;
     background-color: rgba(0,0,0,0.4);
+    .errmsg {
+        background-color: lightpink;
+        color: firebrick;
+        font-weight: bold;
+        
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 
     form {
         display: flex;
@@ -21,6 +29,7 @@
         justify-content: space-evenly;
         flex-grow: 1;
         padding-bottom: 1rem;
+        
 
         input[type="text"],
         input[type="password"],
@@ -51,7 +60,7 @@
             margin-right: 0.25rem;
         }
         
-        .offscreen {
+        .offScreen {
             position: absolute;
             left: -9999px;
         }
@@ -70,13 +79,7 @@
             margin-left: 0.25rem;
         }
         
-        .errmsg {
-            background-color: lightpink;
-            color: firebrick;
-            font-weight: bold;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
+        
         
         .line {
             display: inline-block;

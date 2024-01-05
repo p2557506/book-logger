@@ -95,7 +95,7 @@ const Book = () => {
                         </div>
                         <div className="state">
                             <Tooltip title="Wishlist" arrow>
-                                <Button onClick={()=>(handleWishlistPush())}><StarIcon/></Button>
+                                <Button onClick={()=>(handleBacklogPush())}><StarIcon/></Button>
                             </Tooltip>
                         </div>
                         <div className="state" >

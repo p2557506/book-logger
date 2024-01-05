@@ -13,7 +13,13 @@ const db = mysql.createConnection({
 
 //Middleware to send data to express server
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+    {
+        origin: "http://localhost:3000",
+        credentials:true
+        
+    }
+))
 //Make api request using express server
 
 app.get("/", (req,res)=>{
@@ -87,6 +93,7 @@ app.get("/wishlist", (req,res)=>{
     })
 })
 
+
 app.post("/wishlist", (req,res)=>{
     const q = "INSERT INTO wishlist(`title`,`desc`,`cover`) VALUES (?)"
     const values = [
@@ -102,7 +109,37 @@ app.post("/wishlist", (req,res)=>{
 
 ////
 
+//Users DB
+app.get("/users", (req,res)=>{
+    const q = "SELECT * FROM users"
+    
+    db.query(q,(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
 
+app.get("/users/:id", (req,res)=>{
+    const userId = req.params.id
+    const q = "SELECT * FROM users WHERE id = ?"
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/signup", (req,res)=>{
+    const q = "INSERT INTO users(`username`,`password`) VALUES (?)"
+    const values = [
+        req.body.username,
+        req.body.password,
+        
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
 
 
 app.listen(8800, ()=>{
