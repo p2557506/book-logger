@@ -141,6 +141,24 @@ app.post("/signup", (req,res)=>{
     })
 })
 
+app.post("/auth", (req,res) =>{
+    const q = "SELECT * FROM users WHERE username = ? AND password = ?"
+    const username = req.body.username;
+    const password = req.body.password;
+    
+    db.query(q,[username,password],(err,data)=>{
+        if(err){
+            res.send({err:err})
+        }
+        if(data.length > 0){
+            res.send(data)
+        } else{
+            res.send({message : "Wrong Username Or Password"})
+        }
+        
+    })
+})
+
 
 app.listen(8800, ()=>{
     console.log("Wishlist,Backlog and Archive Books")

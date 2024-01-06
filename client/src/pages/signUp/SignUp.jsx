@@ -1,5 +1,6 @@
 import React , { useRef,useState,useEffect } from 'react';
-import axios from 'axios';
+
+import axios from '../../api/axios';
 import Navbar from '../../components/navbar/Navbar';
 
 import "./signUp.scss"
@@ -139,7 +140,7 @@ const SignUp = () => {
                 <input
                  type="password"
                  id="password"
-                 
+                 ref={userRef}
                  onChange={(e) => setPwd(e.target.value)}
                  required
                  aria-invalid={validPwd ? "false" : "true"}
