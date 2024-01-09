@@ -36,21 +36,19 @@ const Login = () => {
     
     const [pwdFocus,setPwdFocus] = useState(false);
 
+
     
 
     const [errMsg,setErrMsg] = useState("")
     const [successMsg,setSuccess] = useState(false)
 
+    const [loginStatus,setLoginStatus] = useState("");
+
     useEffect(() =>{
         userRef.current.focus();
     },[])
 
-    useEffect(()=>{
-        const result = USER_REGEX.test(userName);
-        console.log(result);
-        console.log(userName);
-        
-    }, [userName])
+    
 
     //Refresh error message when user changes any input
     useEffect(() =>{
@@ -68,17 +66,22 @@ const Login = () => {
                 headers:{'Content-Type':'application/json'},
                 withCredentials:true
             });
+
             
 
             console.log(res)
             if(res.data.message){
                 setErrMsg("Wrong Username or Password")
+               
+            } else{
+                setLoginStatus(res.data[0].username)
             }
             
             
         } catch (e) {
             
-            console.error(e)
+            console.log(e.response.data.err)
+            setErrMsg(e.response.data.err)
             
             
         }
@@ -93,6 +96,7 @@ const Login = () => {
         <div className="formContainer">
             <p ref={errRef} className={errMsg ? "errmsg" : "offScreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign in</h1>
+            <h2>{loginStatus}</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                     Username:
