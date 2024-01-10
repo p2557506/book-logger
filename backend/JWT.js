@@ -1,6 +1,6 @@
 import {sign,verify} from "jsonwebtoken";
 
-export const createTokens = (user) => {
+const createTokens = (user) => {
     //3 Arguments taken by token
     //Mixed up sercet/ Create .env file for secret
     const accessToken = sign({
@@ -13,3 +13,5 @@ export const createTokens = (user) => {
     return accessToken
 
 }
+
+export default createTokens

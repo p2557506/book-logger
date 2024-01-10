@@ -25,6 +25,7 @@ const Browse = () => {
 
     const [page,setPage] = useState(0);
     const headerTitles = ["All Books","Your Backlog","Your Wishlist"]
+    //Page displayer check if user is there
     const PageDisplay = () =>{
         if(page === 0){
             return <AllBooks/>

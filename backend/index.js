@@ -29,6 +29,7 @@ app.use(cors(
 ))
 
 //JWT Section
+//Create Token
 const createTokens = (user) => {
     //3 Arguments taken by token
     //Mixed up sercet/ Create .env file for secret
@@ -42,6 +43,24 @@ const createTokens = (user) => {
     return accessToken
 
 }
+//Validate Token
+const validateToken = (req,res,next) => {
+    const accessToken = req.cookies["access-token"]
+
+    if(!accessToken) return res.status(400).json({err:"User Not Authenticated"})
+
+    try {
+        //Boolean
+        const validToken = jwt.verify(accessToken,"changelater")
+        if(validToken){
+            req.authentic = true;
+            return next()
+        }
+    } catch (error) {
+        res.status(400).json({error:error})
+    }
+}
+/////
 
 //Make api request using express server
 
@@ -182,9 +201,12 @@ app.post("/auth", async (req,res) =>{
             bcrypt.compare(password,data[0].password,(err,result) => {
                 if(result){
                     //data[0] is user in this scenario
+                    //Access token created using username and id with secret key
                     const at = createTokens(result)
-                    res.cookie("access",at,{
+                    //Access token stores as cookie to remember user
+                    res.cookie("access-token",at,{
                         maxAge: 60 * 60 * 24 * 30 * 1000,
+                        
                     })
                     
                     res.json(data);
@@ -203,8 +225,10 @@ app.post("/auth", async (req,res) =>{
     
 })
 
-app.get("/profile", (req,res) =>{
+app.get("/profile", validateToken,(req,res) =>{
     //Send token in request and token is stored in frontend
+    //Determne if user is authenticated
+    res.json("Logged in");
 })
 
 

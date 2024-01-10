@@ -1,8 +1,8 @@
-import React , { useRef,useState,useEffect , useContext } from 'react';
+import React , { useRef,useState,useEffect } from 'react';
 import axios from '../../api/axios';
 import Navbar from '../../components/navbar/Navbar';
 
-import AuthContext from '../../context/AuthProvider';
+import useAuth from '../../hooks/useAuth';
 
 
 import "./signIn.scss"
@@ -22,8 +22,8 @@ const Login = () => {
     //Focus on user inputs and error for accessibility announcer
     const userRef = useRef();
     const errRef = useRef();
-
-    const {setAuth} = useContext(AuthContext)
+    //Global auth
+    const {setAuth} = useAuth()
 
 
    
@@ -69,13 +69,10 @@ const Login = () => {
 
             
 
-            console.log(res)
-            if(res.data.message){
-                setErrMsg("Wrong Username or Password")
-               
-            } else{
-                setLoginStatus(res.data[0].username)
-            }
+            console.log(JSON.stringify(res?.data))
+            
+            setAuth({userName,pwd})
+            
             
             
         } catch (e) {
