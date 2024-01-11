@@ -8,7 +8,7 @@ const RequireAuth = () => {
 
     return(
         //Checks if there is a user
-        auth?.userName
+        auth
         ? <Outlet/>
         : <Navigate to="/signin" state={{from:location}} replace/>
     );

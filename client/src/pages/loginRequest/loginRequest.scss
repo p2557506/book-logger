@@ -1,0 +1,12 @@
+.con{
+    height: 100vh;
+
+    .requestContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem;
+        padding: 1rem;
+        border: 1px solid gray;
+    }
+}

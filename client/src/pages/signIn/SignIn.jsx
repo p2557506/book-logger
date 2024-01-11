@@ -1,8 +1,9 @@
 import React , { useRef,useState,useEffect } from 'react';
 import axios from '../../api/axios';
 import Navbar from '../../components/navbar/Navbar';
-
+import { Link,useNavigate,useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+
 
 
 import "./signIn.scss"
@@ -24,6 +25,10 @@ const Login = () => {
     const errRef = useRef();
     //Global auth
     const {setAuth} = useAuth()
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
 
    
@@ -71,7 +76,8 @@ const Login = () => {
 
             console.log(JSON.stringify(res?.data))
             
-            setAuth({userName,pwd})
+            setAuth(true);
+            navigate(from, {replace:true});
             
             
             

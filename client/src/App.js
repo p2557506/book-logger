@@ -18,11 +18,11 @@ function App() {
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/signin" element={<SignIn/>}/>
             <Route path="/" element={<Home/>}/>
+              <Route path="/browse" element={<Browse/>}/>
+              <Route path="/books/:id" element ={<Book/>}/>
 
             {/*Protected routes*/}
             <Route element ={<RequireAuth/>}>
-              <Route path="/browse" element={<Browse/>}/>
-              <Route path="/books/:id" element ={<Book/>}/>
               
             </Route>
             

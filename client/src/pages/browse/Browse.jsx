@@ -13,28 +13,34 @@ import InventoryIcon from '@mui/icons-material/Inventory';//Backlog
 
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-
+import useAuth from '../../hooks/useAuth';
 
 import "./browse.scss"
 
 import AllBooks from '../allBooks/AllBooks';
 import Backlog from '../backlog/Backlog';
 import Wishlist from '../wishlist/Wishlist';
+import LoginRequest from '../loginRequest/LoginRequest';
 
 const Browse = () => {
 
     const [page,setPage] = useState(0);
     const headerTitles = ["All Books","Your Backlog","Your Wishlist"]
+    const {auth,setAuth} = useAuth();
+    
     //Page displayer check if user is there
     const PageDisplay = () =>{
+        
         if(page === 0){
             return <AllBooks/>
-        } else if(page === 1){
-        return <Backlog/>
-        }else{
+        } 
+        if(!auth && page!==0){
+            return<LoginRequest/>
+        } else if(auth && page == 1){
+            return <Backlog/>
+        } else{
             return <Wishlist/>
         }
-        
     }
 
     const [books,setBooks] = useState([]);
