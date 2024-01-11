@@ -7,8 +7,13 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import ArchiveIcon from '@mui/icons-material/Archive';
-
+import { useEffect } from 'react';
+import axios from '../../api/axios';
 const Home = () => {
+
+  
+
+
   return (
     <div className="home">
         <Navbar/>

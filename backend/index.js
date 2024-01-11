@@ -46,16 +46,16 @@ const createTokens = (user) => {
 }
 //Validate Token
 const validateToken = (req,res,next) => {
-    const accessToken = req.cookies["access-token"]
+    const token = req.cookies.token
 
-    if(!accessToken) return res.status(400).json({err:"User Not Authenticated"})
+    if(!token) return res.status(400).json({err:"User Not Authenticated"})
 
     
         //Boolean
-        jwt.verify(accessToken,"changelater", (err,decoded) => {
+        jwt.verify(token,"changelater", (err,decoded) => {
 
             if(err){
-                return res.json(err)
+                return res.json({err: "token please boay"})
             } else{
                 
                 req.username = decoded
@@ -207,10 +207,10 @@ app.post("/auth", async (req,res) =>{
                     //data[0] is user in this scenario
                     //Access token created using username and id with secret key
                     const payload = {"username":data[0].username}
-                    const at = jwt.sign(payload, "changelater",{expiresIn:'1d'})
+                    const token = jwt.sign(payload, "changelater",{expiresIn:'1d'})
 
                     //Access token stores as cookie to remember user
-                    res.cookie("access-token",at,{
+                    res.cookie("token",token,{
                         maxAge: 60 * 60 * 24 * 30 * 1000,
                         
                     })
@@ -234,7 +234,7 @@ app.post("/auth", async (req,res) =>{
 app.get("/profile", validateToken,(req,res) =>{
     //Send token in request and token is stored in frontend
     //Determne if user is authenticated
-    res.json({status: "logged in" , username:req.username});
+    return res.json({status: "logged in" , username:req.username});
 })
 
 

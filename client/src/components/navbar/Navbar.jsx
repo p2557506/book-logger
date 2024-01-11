@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./navbar.scss"
 import { Link } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
+import axios from '../../api/axios'
+import { useEffect } from 'react'
 const Navbar = () => {
   const {auth,setAuth} = useAuth();
+
+  //User details
+  const [userName,setUsername] = useState();
+
+  useEffect(() => {
+    const fetchProfile = async  (e) =>{
+      
+        try {
+            const res = await axios.get("http://localhost:8800/profile")
+            if(res.data.status == "logged in"){
+              setAuth(true)
+              setUsername(res.data.username.username)
+            } else{
+              setAuth(false)
+            }
+            console.log(res)
+            
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    fetchProfile()
+}, [])
+
   return (
     <nav>
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
@@ -13,7 +39,7 @@ const Navbar = () => {
             <li><Link to={"/browse"}>Browse</Link></li>
             
         </ul>
-        {!auth.username ? <Link className="logBtn" to={"/signin"}>Log In</Link> : <Link className="logBtn">Log Out</Link>}
+        {!auth ? <Link className="logBtn" to={"/signin"}>Log In</Link> : <p>{userName}</p>}
         
     </nav>
   )

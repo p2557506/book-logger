@@ -60,6 +60,8 @@ const Login = () => {
         setErrMsg("");
     },[userName,pwd])
 
+    axios.defaults.withCredentials = true;
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
         //If button enabled with JS Hack

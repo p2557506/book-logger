@@ -4,19 +4,20 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) =>{
     const [auth,setAuth] = useState(false);
+     
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const fetchProfile = async  () =>{
             try {
                 const res = await axios.get("http://localhost:8800/profile")
-                console.log(res)
+                console.log(res.username)
                 
             } catch (err) {
                 console.log(err)
             }
         }
         fetchProfile()
-    }, [])
+    }, []) */
 
     return (
         <AuthContext.Provider value={{auth,setAuth}}>
