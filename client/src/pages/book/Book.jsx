@@ -13,38 +13,48 @@ import StarIcon from '@mui/icons-material/Star';
 
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import useAuth from '../../hooks/useAuth';
 
 import "./book.scss"
 
 const Book = () => {
 
+    axios.defaults.withCredentials = true
+    const {userId,setUserId,backlogs,setBacklog} = useAuth();
     const location = useLocation();
     
-    const id = location.pathname.split("/")[2];
-    console.log(id);
+    const bookId = location.pathname.split("/")[2];
+    
+    console.log(bookId);
+
+    console.log(backlogs)
 
     //All institutions stored inside useState
     const [book,setBook] = useState([]);
 
-    const [bookie,setBookie] = useState()
+    const [bookie,setBookie] = useState();
 
+    const [temp,setTemp] = useState("ee");
+
+    console.log(userId)
     
 
-    const handleBacklogPush = async () =>{
+    const handleBacklogOrder = async () =>{
         
         try {
-            const res = await axios.post("http://localhost:8800/backlog", bookie);
-            
+            //STEP 1 Push user_id to wb storage
+            const res = await axios.post("http://localhost:8800/backlogOrderPush/", bookie);
+            console.log(res);
         } catch (err) {
             console.log(err)
         }
         
     }
 
-    const handleWishlistPush = async () =>{
+    const handleWishlistOrder = async () =>{
         
         try {
-            const res = await axios.post("http://localhost:8800/wishlist", bookie);
+            const res = await axios.post("http://localhost:8800/wishlistOrderPush", bookie);
             
         } catch (err) {
             console.log(err)
@@ -56,11 +66,11 @@ const Book = () => {
     useEffect(() => {
         const fetchSpecificBook = async ()=> {
             try {
-                const res = await axios.get("http://localhost:8800/books/"+ id);
+                const res = await axios.get("http://localhost:8800/books/"+ bookId);
                 
                 console.log(res.data[0]);
-                setBook(res.data);
-                setBookie(res.data[0])
+                setBook(res.data)
+                setBookie({ uid: userId,book_id: bookId, title: res.data[0].title, descrip:res.data[0].desc, cover: res.data[0].cover})
                 
             } catch (err) {
                 console.log(err);
@@ -71,14 +81,22 @@ const Book = () => {
         
     },[])
 
+    
+    //Check if book is in backlog
+
+    
+    
+
   return (
     <div>
         <Navbar/>
         {book.map(book =>(
-            <div className="body">
+            <div className="body" key={book.id}>
                 <header>
                     <h1>{book.title}</h1>
                     <p>{book.desc}</p>
+                    
+                    <p>{temp}</p>
                 </header>
                 <div className="collectionContainer">
                     <img src={book.cover} alt="" />
@@ -95,12 +113,12 @@ const Book = () => {
                         </div>
                         <div className="state">
                             <Tooltip title="Wishlist" arrow>
-                                <Button onClick={()=>(handleBacklogPush())}><StarIcon/></Button>
+                                <Button onClick={()=>(handleWishlistOrder())} ><StarIcon/></Button>
                             </Tooltip>
                         </div>
                         <div className="state" >
                             <Tooltip title="Backlog" arrow>
-                                <Button onClick={()=>(handleBacklogPush())}><InventoryIcon/></Button>
+                                <Button onClick={()=>(handleBacklogOrder())}><InventoryIcon/></Button>
                             </Tooltip>
                         </div>
                     </div>

@@ -58,7 +58,10 @@ const validateToken = (req,res,next) => {
                 return res.json({err: "token please boay"})
             } else{
                 
-                req.username = decoded
+                req.username = decoded.username
+                req.id = decoded.id
+                
+                
                 next();
             }
         })
@@ -107,7 +110,7 @@ app.post("/books",(req,res)=>{
 
 //Backlog DB
 app.get("/backlog", (req,res)=>{
-    const q = "SELECT * FROM backlog"
+    const q = "CALL get_user_backlogs()";
     
     db.query(q,(err,data)=>{
         if(err) return res.json(err)
@@ -127,9 +130,84 @@ app.post("/backlog", (req,res)=>{
         return res.json(data)
     })
 })
+
+app.get("/userBacklog/:id", (req,res)=>{
+    const q = "SELECT user_id,title,cover FROM wbstorage_item INNER JOIN books ON wbstorage_item.book_item_id = books.id INNER JOIN wbstorage ON wbstorage_item.wb_id = wbstorage.id WHERE uid = ?";
+    const userId = req.params.id
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+//ADD Book TO Backlog
+//STEPS:
+//1) Push USER ID TO TO WB STORAGE
+//2) TRIGGER PUSH ID AND USER
+app.post("/userOrder/:id", (req,res)=>{
+    const q = "INSERT INTO wbstorage(`uid`) VALUES (?)"
+    const userId = req.params.id
+    
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+//All Backlog Orders
+app.get("/backlogOrders/:uid", (req,res)=>{
+    const q = "SELECT * FROM backlogOrders WHERE uid = ?"
+    const userId = req.params.uid
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/backlogOrderPush", (req,res)=>{
+    const q = "INSERT INTO backlogOrders(`uid`,`book_id`,`title`,`descrip`,`cover`) VALUES (?)"
+    const values = [
+        req.body.uid,
+        req.body.book_id,
+        req.body.title,
+        req.body.descrip,
+        req.body.cover,
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 /////
 
 //Wishlist DB
+
+//All Wishlist Orders
+app.get("/wishlistOrders/:uid", (req,res)=>{
+    const q = "SELECT * FROM wishlistOrders WHERE uid = ?"
+    const userId = req.params.uid
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/wishlistOrderPush", (req,res)=>{
+    const q = "INSERT INTO wishlistOrders(`uid`,`book_id`,`title`,`descrip`,`cover`) VALUES (?)"
+    const values = [
+        req.body.uid,
+        req.body.book_id,
+        req.body.title,
+        req.body.descrip,
+        req.body.cover,
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.get("/wishlist", (req,res)=>{
     const q = "SELECT * FROM wishlist"
     
@@ -153,6 +231,14 @@ app.post("/wishlist", (req,res)=>{
     })
 })
 
+app.get("/wishlist/:id", (req,res)=>{
+    const q = "SELECT title,cover,user_id FROM wishliststorage_item INNER JOIN books ON wishliststorage_item.book_id = books.id INNER JOIN wishliststorage ON wishliststorage_item.wishliststorage_id = wishliststorage.id WHERE user_id = ?";
+    const userId = req.params.id
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
 ////
 
 //Users DB
@@ -206,7 +292,7 @@ app.post("/auth", async (req,res) =>{
                 if(result){
                     //data[0] is user in this scenario
                     //Access token created using username and id with secret key
-                    const payload = {"username":data[0].username}
+                    const payload = {"username":data[0].username,"id":data[0].id}
                     const token = jwt.sign(payload, "changelater",{expiresIn:'1d'})
 
                     //Access token stores as cookie to remember user
@@ -231,10 +317,15 @@ app.post("/auth", async (req,res) =>{
     
 })
 
+app.get("/logout" , (req,res) => {
+    res.clearCookie('token')
+    return res.json({status: "logged out"})
+})
+
 app.get("/profile", validateToken,(req,res) =>{
     //Send token in request and token is stored in frontend
     //Determne if user is authenticated
-    return res.json({status: "logged in" , username:req.username});
+    return res.json({status: "logged in" , username:req.username, id:req.id});
 })
 
 

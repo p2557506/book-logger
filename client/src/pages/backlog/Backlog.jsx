@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
-
+import useAuth from '../../hooks/useAuth'
 //Reading States Reading,Finished,Booklog,Wishlist
 import BookmarkIcon from '@mui/icons-material/Bookmark';//Reading
 import BeenhereIcon from '@mui/icons-material/Beenhere';//Finished
@@ -14,14 +14,15 @@ import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
 const Backlog = () => {
-  const [backlogs,setBacklog] = useState([]);
-
+  
+    axios.defaults.withCredentials = true;
+  const {userId,setUserId,backlogs,setBacklog} = useAuth();
+  
   const [searchTerm,setSearchTerm] = useState("");
-
     useEffect(()=>{
         const fetchAllBacklog = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/backlog")
+                const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
                 console.log(res.data)
                 setBacklog(res.data)
             } catch (err) {

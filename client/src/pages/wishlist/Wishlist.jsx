@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
+import useAuth from '../../hooks/useAuth';
 
 //Reading States Reading,Finished,Booklog,Wishlist
 import BookmarkIcon from '@mui/icons-material/Bookmark';//Reading
@@ -18,11 +19,12 @@ const Wishlist = () => {
 
   const [searchTerm,setSearchTerm] = useState("");
   
+  const {userId,setUserId} = useAuth();
 
     useEffect(()=>{
         const fetchAllWishlist = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/wishlist")
+                const res = await axios.get("http://localhost:8800/wishlistOrders/" + userId)
                 console.log(res.data)
                 setWishlist(res.data)
             } catch (err) {

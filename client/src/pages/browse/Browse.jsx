@@ -24,9 +24,10 @@ import LoginRequest from '../loginRequest/LoginRequest';
 
 const Browse = () => {
 
+    axios.defaults.withCredentials = true
     const [page,setPage] = useState(0);
     const headerTitles = ["All Books","Your Backlog","Your Wishlist"]
-    const {auth,setAuth} = useAuth();
+    const {auth,setAuth,userId,backlogs,setBacklog} = useAuth();
     
     //Page displayer check if user is there
     const PageDisplay = () =>{
@@ -56,6 +57,19 @@ const Browse = () => {
             }
         }
         fetchAllBooks()
+    },[])
+
+    useEffect(()=>{
+        const fetchAllBacklog = async  () =>{
+            try {
+                const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
+                console.log(res.data)
+                setBacklog(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllBacklog()
     },[])
 
     

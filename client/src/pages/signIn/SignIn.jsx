@@ -31,7 +31,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
 
-   
+    const {userId,setUserId} = useAuth();
 
     const [userName,setUserName] = useState("");
     
@@ -77,7 +77,7 @@ const Login = () => {
             
 
             console.log(JSON.stringify(res?.data))
-            
+            setUserId(res.data.id)
             setAuth(true);
             navigate(from, {replace:true});
             
