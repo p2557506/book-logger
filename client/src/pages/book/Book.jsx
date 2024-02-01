@@ -16,39 +16,82 @@ import Tooltip from '@mui/material/Tooltip';
 import useAuth from '../../hooks/useAuth';
 
 import "./book.scss"
+import Footer from '../../components/footer/Footer';
 
 const Book = () => {
-
-    axios.defaults.withCredentials = true
-    const {userId,setUserId,backlogs,setBacklog} = useAuth();
-    const location = useLocation();
+    axios.defaults.withCredentials = true;
+    const {userId,setUserId} = useAuth();
     
+    const location = useLocation();
     const bookId = location.pathname.split("/")[2];
     
-    console.log(bookId);
-
-    console.log(backlogs)
-
+   
+    
     //All institutions stored inside useState
     const [book,setBook] = useState([]);
-
+    
     const [bookie,setBookie] = useState();
-
+    
     const [temp,setTemp] = useState("ee");
+    
+    
+    
+    
+    
+    
+    
+    const [backlogs,setBacklog] = useState([]);
+    useEffect(()=>{
+        const fetchAllBacklog = async  () =>{
+            try {
+                const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
+                
+                setBacklog(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllBacklog()
+    },[backlogs])
 
-    console.log(userId)
+    let isInBacklog = backlogs.some( backlog => backlog['book_id'] == bookId);
+    
+    
+    
+    //Boolean to track if book is in backlog //Maybe store in provider to keep constant while logged in
+    
+      
+   
     
 
     const handleBacklogOrder = async () =>{
         
         try {
             //STEP 1 Push user_id to wb storage
-            const res = await axios.post("http://localhost:8800/backlogOrderPush/", bookie);
-            console.log(res);
+            //If book is in backlog, delete book from backlog
+            
+                //IF in book is in backlog delete
+                
+            
+                //add book in backlog
+                const res = await axios.post("http://localhost:8800/backlogOrderPush/", bookie);
+                console.log(res);
+
+            
         } catch (err) {
+            //alert that book is in backlog
+            
             console.log(err)
         }
         
+    }
+
+    const handleBookBacklogDelete = async () => {
+        try {
+            const res = await axios.delete("http://localhost:8800/removeBook/" +bookId);
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const handleWishlistOrder = async () =>{
@@ -81,6 +124,10 @@ const Book = () => {
         
     },[])
 
+   
+      
+     
+
     
     //Check if book is in backlog
 
@@ -88,43 +135,50 @@ const Book = () => {
     
 
   return (
-    <div>
+    <div >
         <Navbar/>
         {book.map(book =>(
-            <div className="body" key={book.id}>
+            <div className="bookPage" key={book.id}>
+                <div>
+                    d
+                </div>
                 <header>
-                    <h1>{book.title}</h1>
-                    <p>{book.desc}</p>
                     
-                    <p>{temp}</p>
-                </header>
-                <div className="collectionContainer">
-                    <img src={book.cover} alt="" />
-                    <div className="readingState">
-                        <div className="state">
-                            <Tooltip title="Reading" arrow>
-                                <Button><BookmarkIcon/></Button>
-                            </Tooltip>
-                        </div>
-                        <div className="state">
-                            <Tooltip title="Finished" arrow>
-                                <Button><BeenhereIcon/></Button>
-                            </Tooltip>
-                        </div>
-                        <div className="state">
-                            <Tooltip title="Wishlist" arrow>
-                                <Button onClick={()=>(handleWishlistOrder())} ><StarIcon/></Button>
-                            </Tooltip>
-                        </div>
-                        <div className="state" >
-                            <Tooltip title="Backlog" arrow>
-                                <Button onClick={()=>(handleBacklogOrder())}><InventoryIcon/></Button>
-                            </Tooltip>
+                    <div className="collectionContainer">
+                        <img src={book.cover} alt="" />
+                        <div className="readingState">
+                            <div className="state">
+                                <Tooltip title="Reading" arrow>
+                                    <Button className="neutral"><BookmarkIcon/></Button>
+                                </Tooltip>
+                            </div>
+                            <div className="state">
+                                <Tooltip title="Finished" arrow>
+                                    <Button className="neutral"><BeenhereIcon/></Button>
+                                </Tooltip>
+                            </div>
+                            <div className="state">
+                                <Tooltip title="Wishlist" arrow>
+                                    <Button className="neutral" onClick={()=>(handleWishlistOrder())} ><StarIcon/></Button>
+                                </Tooltip>
+                            </div>
+                            <div className="state" >
+                                <Tooltip title="Backlog" arrow>
+                                    <Button className={isInBacklog ? "highlight" : "neutral"} onClick={()=>(isInBacklog ? handleBookBacklogDelete() : handleBacklogOrder())}><InventoryIcon/></Button>
+                                </Tooltip>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div>
+
+                        <h1>{book.title}</h1>
+                        <p>{book.desc}</p>
+                    </div>
+                    
+                </header>
             </div>
             ))}
+            <Footer/>
     </div>
   )
 }

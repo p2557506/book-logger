@@ -4,12 +4,16 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) =>{
     axios.defaults.withCredentials = true
+    
     const [auth,setAuth] = useState(false);
+   
     const [userId , setUserId] = useState();
     //Make backlog accessible across application
     const [backlogs,setBacklog] = useState([]);
 
     const [bookId,setBookId] = useState();
+
+    const [isInBacklog,setIsInBacklog] = useState(false);
     
 
    /*  useEffect(() => {
@@ -26,7 +30,7 @@ export const AuthProvider = ({children}) =>{
     }, []) */
 
     return (
-        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId}}>
+        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId,isInBacklog,setIsInBacklog}}>
             {children}
         </AuthContext.Provider>
     )

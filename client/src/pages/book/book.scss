@@ -1,27 +1,64 @@
 *{
     margin: 0;
     padding: 0;
+    // /background-color: #6B6B6B;
 }
-.body{
-    display: flex;
-    justify-content: space-between;
+.bookPage{
+    
+    
+    background-color: #6B6B6B;
+    height: 100vh;    
+    padding: 0 4rem;
+
+
+    header{
+        margin-top: 1rem;
+        background-color: gray;
+        padding: 1rem;
+        
+        display: flex;
+        
+    }
 
     .collectionContainer{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 1rem;
+        
 
         img{
-            width: 250px;
+            width: 150px;
             height: auto;
             border-radius: .25rem;
+            
+           
         }
 
         .readingState{
             display: flex;
             border: solid 1px gray;
             border-radius: .25rem;
+
+            .state{
+                transition: all 0.5s ease;
+                
+                    .neutral{
+
+                        color: blue;
+                        
+                        &:hover{
+                            color: white;
+                            background-color: blue;
+                        }
+                    }
+                    .highlight{
+                        color: white;
+                        background-color: blue;
+                    }
+                
+            }
         }
     }
 }

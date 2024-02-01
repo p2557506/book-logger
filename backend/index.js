@@ -155,6 +155,7 @@ app.post("/userOrder/:id", (req,res)=>{
 })
 
 //All Backlog Orders
+
 app.get("/backlogOrders/:uid", (req,res)=>{
     const q = "SELECT * FROM backlogOrders WHERE uid = ?"
     const userId = req.params.uid
@@ -175,6 +176,16 @@ app.post("/backlogOrderPush", (req,res)=>{
     ]
     db.query(q,[values],(err,data)=>{
         if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.delete("/removeBook/:id",(req,res) =>{
+    const bookId = req.params.id
+    const q = "DELETE from backlogOrders WHERE book_id = ?"
+
+    db.query(q,[bookId], (err,data) =>{
+        if(err) return res.json(err);
         return res.json(data)
     })
 })

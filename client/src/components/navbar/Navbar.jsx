@@ -13,6 +13,10 @@ const Navbar = () => {
   const [userName,setUsername] = useState();
   const [id,setId] = useState();
   
+
+  const location = useLocation();
+  const route = location.pathname.split("/")[1];
+
   useEffect(() => {
     const fetchProfile = async  (e) =>{
       
@@ -34,22 +38,7 @@ const Navbar = () => {
     fetchProfile()
 }, [])
 
-useEffect(()=>{
-  const fetchAllBacklog = async  () =>{
-      try {
-          const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
-          console.log(res.data)
-          setBacklog(res.data)
-      } catch (err) {
-          console.log(err)
-      }
-  }
-  fetchAllBacklog()
-},[])
 
-let hasThisBook = backlogs.some( backlog => backlog['book_id'] == bookId);
-
-    console.log(hasThisBook)
 
 const handleLogout =  async () =>{
   try {
@@ -70,7 +59,16 @@ const handleLogout =  async () =>{
             <li><Link to={"/browse"}>Browse</Link></li>
             
         </ul>
-        {!auth ? <Link className="logBtn" to={"/signin"}>Log In</Link> : <div><p>{userName}{userId}</p><Link onClick={handleLogout}>Log Out</Link></div>}
+        
+          {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
+          <div  className="dropdown">
+            <button className="userBtn">{userName}</button>
+            <div className="content">
+              
+              <Link onClick={handleLogout}>Log Out</Link></div>
+              
+            </div>}
+          
         
     </nav>
   )

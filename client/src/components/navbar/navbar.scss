@@ -50,8 +50,67 @@ nav{
         
     }
 
-    .logBtn{
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
+    .dropdown{
+        position: relative;
+
+        .userBtn{
+            background-color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+
+        }
+
+        .content{
+            background-color: #6B6B6B;
+            position: absolute;
+            min-width: 100px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            display: none;
+            a{
+                display: block;
+                color: white; 
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+
+                &:hover{
+                    background-color: gray;
+                }
+            }
+
+        }
+
+        &:hover .content{
+            display: block;
+        }
+        
+
+        
+    }
+
+    
+
+    .btns{
+        display: flex;
+        gap: 1rem;
+
+        .logBtn{
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            text-decoration: none;
+            background-color: lightseagreen;
+            color: white;
+            
+        }
+        .signUpBtn{
+            background-color: lightseagreen;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
+        }
     }
 }
