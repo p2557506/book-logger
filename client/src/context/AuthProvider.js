@@ -8,12 +8,14 @@ export const AuthProvider = ({children}) =>{
     const [auth,setAuth] = useState(false);
    
     const [userId , setUserId] = useState();
+    const [username,setUsername] = useState();
     //Make backlog accessible across application
     const [backlogs,setBacklog] = useState([]);
 
     const [bookId,setBookId] = useState();
 
     const [isInBacklog,setIsInBacklog] = useState(false);
+
     
 
    /*  useEffect(() => {
@@ -30,7 +32,7 @@ export const AuthProvider = ({children}) =>{
     }, []) */
 
     return (
-        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId,isInBacklog,setIsInBacklog}}>
+        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId,isInBacklog,setIsInBacklog,username,setUsername}}>
             {children}
         </AuthContext.Provider>
     )

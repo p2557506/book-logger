@@ -339,6 +339,22 @@ app.get("/profile", validateToken,(req,res) =>{
     return res.json({status: "logged in" , username:req.username, id:req.id});
 })
 
+app.put("/profile/:id", (req,res) => {
+    const userId = req.params.id;
+    const q = "UPDATE users SET `username` = ?, `avatarImg` = ? WHERE id = ?";
+
+    const values = [
+        req.body.username,
+        req.body.avatarImg
+    ]
+
+    db.query(q,[...values,userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json("User profile has been updated")
+    })
+
+})
+
 
 app.listen(8800, ()=>{
     console.log("Wishlist,Backlog and Archive Books")

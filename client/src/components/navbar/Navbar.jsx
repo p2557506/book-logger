@@ -6,11 +6,11 @@ import axios from '../../api/axios'
 import { useEffect } from 'react'
 
 const Navbar = () => {
-  const {auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId} = useAuth();
+  const {auth,setAuth,userId,setUserId,username,setUsername} = useAuth();
   
   axios.defaults.withCredentials = true
   //User details
-  const [userName,setUsername] = useState();
+  
   const [id,setId] = useState();
   
 
@@ -36,7 +36,7 @@ const Navbar = () => {
         }
     }
     fetchProfile()
-}, [])
+}, [username])
 
 
 
@@ -62,10 +62,12 @@ const handleLogout =  async () =>{
         
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
-            <button className="userBtn">{userName}</button>
+            <button className="userBtn">{username}</button>
             <div className="content">
-              
-              <Link onClick={handleLogout}>Log Out</Link></div>
+              <Link to={`/profile/${userId}`}>Profile</Link>
+              <Link onClick={handleLogout}>Log Out</Link>
+            </div>
+
               
             </div>}
           

@@ -7,6 +7,7 @@ import Book from "./pages/book/Book";
 import SignUp from "./pages/signUp/SignUp";
 import SignIn from "./pages/signIn/SignIn"
 import Backlog from "./pages/backlog/Backlog";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
               <Route path="/browse" element={<Browse/>}/>
               <Route path="/books/:id" element ={<Book/>}/>
+              <Route path = "/profile/:id" element={<Profile/>}/>
 
             {/*Protected routes*/}
             <Route element ={<RequireAuth/>}>
