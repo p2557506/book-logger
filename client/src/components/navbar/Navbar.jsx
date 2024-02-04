@@ -6,7 +6,7 @@ import axios from '../../api/axios'
 import { useEffect } from 'react'
 
 const Navbar = () => {
-  const {auth,setAuth,userId,setUserId,username,setUsername} = useAuth();
+  const {auth,setAuth,userId,setUserId,username,setUsername,avatarImg,setAvatarImg} = useAuth();
   
   axios.defaults.withCredentials = true
   //User details
@@ -25,6 +25,7 @@ const Navbar = () => {
             if(res.data.status == "logged in"){
               setAuth(true)
               setUsername(res.data.username)
+              setAvatarImg(res.data.avatarImg)
               setUserId(res.data.id)
             } else{
               setAuth(false)
@@ -62,7 +63,8 @@ const handleLogout =  async () =>{
         
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
-            <button className="userBtn">{username}</button>
+            
+            <img src={avatarImg} alt="" />
             <div className="content">
               <Link to={`/profile/${userId}`}>Profile</Link>
               <Link onClick={handleLogout}>Log Out</Link>

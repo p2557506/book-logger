@@ -35,7 +35,8 @@ const createTokens = (user) => {
     //Mixed up sercet/ Create .env file for secret
     
     const accessToken = jwt.sign({
-        username: user.username
+        username: user.username,
+        avatarImg: user.avatarImg
         
 
     },
@@ -60,6 +61,8 @@ const validateToken = (req,res,next) => {
                 
                 req.username = decoded.username
                 req.id = decoded.id
+                req.avatarImg= decoded.avatarImg
+
                 
                 
                 next();
@@ -303,7 +306,7 @@ app.post("/auth", async (req,res) =>{
                 if(result){
                     //data[0] is user in this scenario
                     //Access token created using username and id with secret key
-                    const payload = {"username":data[0].username,"id":data[0].id}
+                    const payload = {"username":data[0].username,"id":data[0].id,"avatarImg":data[0].avatarImg}
                     const token = jwt.sign(payload, "changelater",{expiresIn:'1d'})
 
                     //Access token stores as cookie to remember user
@@ -336,7 +339,7 @@ app.get("/logout" , (req,res) => {
 app.get("/profile", validateToken,(req,res) =>{
     //Send token in request and token is stored in frontend
     //Determne if user is authenticated
-    return res.json({status: "logged in" , username:req.username, id:req.id});
+    return res.json({status: "logged in" , username:req.username, id:req.id, avatarImg:req.avatarImg});
 })
 
 app.put("/profile/:id", (req,res) => {

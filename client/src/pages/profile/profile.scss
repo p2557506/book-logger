@@ -1,0 +1,47 @@
+.profilePage{
+    margin: 1rem 0 0 1rem;
+    height: 100vh;
+
+    .profileEditBox{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        
+        .userBox{
+            display: flex;
+            flex-direction: column;
+            label{
+                margin-bottom: .5rem;
+            }
+            width: 10rem;
+            input{
+                padding: 0.4rem;
+            }
+        }
+        .avatarBox{
+            
+            img{
+                width: 97px;
+                height: 97px;
+                margin-bottom: .5rem;
+            }
+            display: flex;
+            flex-direction: column;
+            
+            label{
+                margin-bottom: .5rem;
+                
+            }
+            
+        }
+    }
+    button{
+        background-color: lightseagreen;
+        color: white;
+        border: none;
+        padding: .25rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+
+    }
+}

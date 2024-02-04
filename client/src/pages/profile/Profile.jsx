@@ -3,11 +3,14 @@ import Navbar from '../../components/navbar/Navbar'
 import axios from '../../api/axios'
 import useAuth from '../../hooks/useAuth'
 
+import "./profile.scss"
+import Footer from '../../components/footer/Footer'
+
 const Profile = () => {
 
     
 
-    const {auth,setAuth,userId,setUserId,username,setUsername} = useAuth();
+    const {auth,setAuth,userId,setUserId,username,setUsername,avatarImg,setAvatarImg} = useAuth();
 
     const [profile, setProfile] = useState({
         username: "",
@@ -33,27 +36,39 @@ const Profile = () => {
         <div className="navbar">
             <Navbar/>
         </div>
+        <div className="profilePage">
+
         <h1>Edit Your Profile</h1>
-        <div className="userBox">
-            <label>Username</label>
-            <input 
-            type="text" 
-            placeholder={username} 
-            onChange={handleChange}
-            name="username"/>
+        <div className="profileEditBox">
+
+            <div className="userBox">
+                <label>Username</label>
+                <input 
+                type="text" 
+                placeholder={username} 
+                onChange={handleChange}
+                name="username"/>
+
+            </div>
+                <label for="fileUpload">Avatar</label>
+            <div className="avatarBox">
+
+                <img src={avatarImg} alt="" />
+                <input 
+                id="fileUpload"
+                type="file" 
+                
+                onChange={handleChange}
+                name="avatarImg"/>
+            </div>
 
         </div>
-        <div className="avatarBox">
-
-            <label>Avatar</label>
-            <input 
-            type="file" 
-            placeholder="username" 
-            onChange={handleChange}
-            name="avatarImg"/>
+            <button onClick={handleUpdate}>Update Profile</button>
         </div>
 
-        <button onClick={handleUpdate}>Update Profile</button>
+        <div className="footer">
+            <Footer/>
+        </div>
 
 
 

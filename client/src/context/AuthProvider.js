@@ -16,6 +16,8 @@ export const AuthProvider = ({children}) =>{
 
     const [isInBacklog,setIsInBacklog] = useState(false);
 
+    const [avatarImg,setAvatarImg] = useState();
+
     
 
    /*  useEffect(() => {
@@ -32,7 +34,7 @@ export const AuthProvider = ({children}) =>{
     }, []) */
 
     return (
-        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId,isInBacklog,setIsInBacklog,username,setUsername}}>
+        <AuthContext.Provider value={{auth,setAuth,userId,setUserId,backlogs,setBacklog,bookId,setBookId,isInBacklog,setIsInBacklog,username,setUsername,avatarImg,setAvatarImg}}>
             {children}
         </AuthContext.Provider>
     )
