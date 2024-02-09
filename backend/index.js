@@ -3,6 +3,8 @@ import mysql from "mysql"
 import cors from "cors"
 import cookeieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
+import multer from "multer"
+import path from "path"
 
 import bcrypt, { hash } from "bcrypt"
 
@@ -15,6 +17,19 @@ const db = mysql.createConnection({
     user:"root",
     password:"password",
     database:"book_logger_db"
+})
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+    filename: (req,file,cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+})
+
+const upload = multer({
+    storage:storage
 })
 
 //Middleware to accept json as body object to requests
@@ -357,6 +372,19 @@ app.put("/profile/:id", (req,res) => {
     })
 
 })
+
+//UPLOAD USER AVATAR CODE BELOW
+
+app.post("/upload/:id",upload.single("image"), (req,res) =>{
+    const image = req.file.filename;
+    const q = "UPDATE users SET avatarImg = ? WHERE id = ?";
+    const userId = req.params.id;
+    db.query(q, [image,userId], (err,data) => {
+        if(err) return res.json({msg: "error"})
+        return res.json({Status: "win"})
+    })
+})
+
 
 
 app.listen(8800, ()=>{
