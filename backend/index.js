@@ -42,6 +42,7 @@ app.use(cors(
         
     }
 ))
+app.use(express.static("public"));
 
 //JWT Section
 //Create Token
