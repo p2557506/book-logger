@@ -8,7 +8,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';//Reading
 import BeenhereIcon from '@mui/icons-material/Beenhere';//Finished
 import InventoryIcon from '@mui/icons-material/Inventory';//Backlog
 import StarIcon from '@mui/icons-material/Star';
-
+import useAuth from '../../hooks/useAuth';
 
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -16,15 +16,24 @@ import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar
 
 const AllBooks = () => {
 
+    const {titleTerm,setTitleterm,genreTerm,setGenreTerm} = useAuth();
     
     const [books,setBooks] = useState([]);
   
     const [bookie,setBookie] = useState();
 
-    const [searchTerm,setSearchTerm] = useState("");
+    const [nameTerm,setNameTerm] = useState("");
 
-    const handleChange = (e) =>{
-        setSearchTerm(e.target.value);
+    
+
+    const handleNameSearch = (e) =>{
+        setNameTerm(e.target.value);
+
+    }
+
+    const handleGenreSearch = (e) =>{
+        setGenreTerm(e.target.value);
+        console.log(e.target.value)
 
     }
     
@@ -41,7 +50,7 @@ const AllBooks = () => {
         }
         fetchAllBooks()
     },[])
-    
+    //Filter for genre aswell
     return (
         
         <div className='booksDisplay'>
@@ -49,11 +58,14 @@ const AllBooks = () => {
             <div className="booksContainer">
                 {books.filter((book) =>{
 
-                    if(searchTerm == ""){
+                    if(nameTerm == "" && genreTerm == ""){
                         return book;
-                    } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                        return book
                     }
+
+                     
+                    else if(book.genre.toLowerCase().includes(genreTerm.toLowerCase()) && book.title.toLowerCase().includes(nameTerm.toLowerCase())){
+                        return book
+                    } 
                     
                 }).map(book => (
                     <div className="bookItem" key={book.id}>
@@ -62,7 +74,7 @@ const AllBooks = () => {
                     </div>
                 ))}
             </div>
-            <FilteringSideBar handleChange = {handleChange}/>
+            <FilteringSideBar handleNameSearch = {handleNameSearch} handleGenreSearch = {handleGenreSearch}/>
       </div>
     
   )

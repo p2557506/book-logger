@@ -6,7 +6,7 @@ import axios from '../../api/axios'
 import { useEffect } from 'react'
 
 const Navbar = () => {
-  const {auth,setAuth,userId,setUserId,username,setUsername,avatarImg,setAvatarImg} = useAuth();
+  const {auth,setAuth,userId,setUserId,username,setUsername,avatarImg,setAvatarImg,searchTerm,setSearchTerm} = useAuth();
   
   axios.defaults.withCredentials = true
   //User details
@@ -37,7 +37,7 @@ const Navbar = () => {
         }
     }
     fetchProfile()
-}, [username])
+}, [])
 
 
 
@@ -50,11 +50,17 @@ const handleLogout =  async () =>{
     console.log(err)
   }
 }
+console.log(avatarImg)
+
+const handleSearchTerm = (e) =>{
+  console.log(e.target.value)
+  setSearchTerm(e.target.value)
+}
 
   return (
     <nav>
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
-        <input type="text" placeholder="Search Books"/>
+        <input type="text" placeholder="Search Books" onChange={handleSearchTerm}/>
         <ul className="navOptions">
             <li><Link to={"/"}>Home</Link></li>
             <li><Link to={"/browse"}>Browse</Link></li>
@@ -64,7 +70,7 @@ const handleLogout =  async () =>{
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
             
-            <img src={avatarImg} alt="" />
+            <img  src={`http://localhost:8800/images/${avatarImg}`} alt="" />
             <div className="content">
               <Link to={`/profile/${userId}`}>Profile</Link>
               <Link onClick={handleLogout}>Log Out</Link>
