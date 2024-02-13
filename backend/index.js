@@ -238,6 +238,16 @@ app.post("/wishlistOrderPush", (req,res)=>{
     })
 })
 
+app.delete("/removeBook/:id",(req,res) =>{
+    const bookId = req.params.id
+    const q = "DELETE from wishlistOrders WHERE book_id = ?"
+
+    db.query(q,[bookId], (err,data) =>{
+        if(err) return res.json(err);
+        return res.json(data)
+    })
+})
+
 app.get("/wishlist", (req,res)=>{
     const q = "SELECT * FROM wishlist"
     
@@ -270,6 +280,42 @@ app.get("/wishlist/:id", (req,res)=>{
     })
 })
 ////
+
+
+//All Completed Orders
+app.get("/completedOrders/:uid", (req,res)=>{
+    const q = "SELECT * FROM completedOrders WHERE uid = ?"
+    const userId = req.params.uid
+    db.query(q,[userId],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post("/completedOrderPush", (req,res)=>{
+    const q = "INSERT INTO completedOrders(`uid`,`book_id`,`title`,`descrip`,`cover`) VALUES (?)"
+    const values = [
+        req.body.uid,
+        req.body.book_id,
+        req.body.title,
+        req.body.descrip,
+        req.body.cover,
+    ]
+    db.query(q,[values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.delete("/removeBook/:id",(req,res) =>{
+    const bookId = req.params.id
+    const q = "DELETE from completedOrders WHERE book_id = ?"
+
+    db.query(q,[bookId], (err,data) =>{
+        if(err) return res.json(err);
+        return res.json(data)
+    })
+})
 
 //Users DB
 app.get("/users", (req,res)=>{
