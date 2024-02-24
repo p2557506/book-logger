@@ -41,21 +41,31 @@ const Book = () => {
     
     
     const [backlogs,setBacklog] = useState([]);
+    const [wishlist,setWishlist] = useState([]);
+    const [archive,setArchive] = useState([]);
+
     useEffect(()=>{
         const fetchAllBacklog = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
-                
-                setBacklog(res.data)
+                const resBacklog = await axios.get("http://localhost:8800/backlogOrders/" + userId)
+                const resWishlist = await axios.get("http://localhost:8800/wishlistOrders/" + userId)
+                const resArchive = await axios.get("http://localhost:8800/completedOrders/" + userId)
+                setBacklog(resBacklog.data)
+                setWishlist(resWishlist.data)
+                setArchive(resArchive.data)
             } catch (err) {
                 console.log(err)
             }
         }
         fetchAllBacklog()
-    },[backlogs])
+    },[backlogs,wishlist,archive])
 
-    let isInBacklog = backlogs.some( backlog => backlog['book_id'] == bookId);
     
+
+    //Check if book is in backlog
+    let isInBacklog = backlogs.some( backlog => backlog['book_id'] == bookId);
+    let isInWishlist = wishlist.some( wishlist => wishlist['book_id'] == bookId);
+    let isInArchive = archive.some( archive => archive['book_id'] == bookId)
     
     
     //Boolean to track if book is in backlog //Maybe store in provider to keep constant while logged in
@@ -88,7 +98,7 @@ const Book = () => {
 
     const handleBookBacklogDelete = async () => {
         try {
-            const res = await axios.delete("http://localhost:8800/removeBook/" +bookId);
+            const res = await axios.delete("http://localhost:8800/removeBookBacklog/" +bookId);
         } catch (err) {
             console.log(err)
         }
@@ -104,6 +114,35 @@ const Book = () => {
         }
         
     }
+
+    const handleBookWishlistDelete = async () => {
+        try {
+            const res = await axios.delete("http://localhost:8800/removeBookWishlist/" +bookId);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const handleCompletedOrder = async () =>{
+        
+        try {
+            const res = await axios.post("http://localhost:8800/completedOrderPush", bookie);
+            
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }
+
+    const handleBookCompletedDelete = async () => {
+        try {
+            const res = await axios.delete("http://localhost:8800/removeBookCompleted/" +bookId);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    
     
     
     useEffect(() => {
@@ -139,13 +178,14 @@ const Book = () => {
         <Navbar/>
         {book.map(book =>(
             <div className="bookPage" key={book.id}>
-                <div>
-                    d
+                <div className="barrier">
+                    
                 </div>
-                <header>
+                <div className="container">
                     
                     <div className="collectionContainer">
                         <img src={book.cover} alt="" />
+                        <h3>My Book Data</h3>
                         <div className="readingState">
                             <div className="state">
                                 <Tooltip title="Reading" arrow>
@@ -154,12 +194,12 @@ const Book = () => {
                             </div>
                             <div className="state">
                                 <Tooltip title="Finished" arrow>
-                                    <Button className="neutral"><BeenhereIcon/></Button>
+                                    <Button className={isInArchive ? "highlight" : "neutral"} onClick={()=>(isInArchive ? handleBookCompletedDelete() : handleCompletedOrder())}><BeenhereIcon/></Button>
                                 </Tooltip>
                             </div>
                             <div className="state">
                                 <Tooltip title="Wishlist" arrow>
-                                    <Button className="neutral" onClick={()=>(handleWishlistOrder())} ><StarIcon/></Button>
+                                    <Button className={isInWishlist ? "highlight" : "neutral"} onClick={()=>(isInWishlist ? handleBookWishlistDelete() : handleWishlistOrder())} ><StarIcon/></Button>
                                 </Tooltip>
                             </div>
                             <div className="state" >
@@ -168,14 +208,15 @@ const Book = () => {
                                 </Tooltip>
                             </div>
                         </div>
+                        
                     </div>
-                    <div>
+                    <div className="bookDetails">
 
                         <h1>{book.title}</h1>
                         <p>{book.desc}</p>
                     </div>
                     
-                </header>
+                </div>
             </div>
             ))}
             <Footer/>

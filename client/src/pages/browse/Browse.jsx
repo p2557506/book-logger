@@ -21,6 +21,7 @@ import AllBooks from '../allBooks/AllBooks';
 import Backlog from '../backlog/Backlog';
 import Wishlist from '../wishlist/Wishlist';
 import LoginRequest from '../loginRequest/LoginRequest';
+import Archive from "../archive/Archive";
 
 const Browse = () => {
 
@@ -38,8 +39,11 @@ const Browse = () => {
         if(!auth && page!==0){
             return<LoginRequest/>
         } else if(auth && page == 1){
+            return <Archive/>
+        } else if(auth && page == 2){
             return <Backlog/>
-        } else{
+        } 
+        else{
             return <Wishlist/>
         }
     }
@@ -71,8 +75,9 @@ const Browse = () => {
             <h1>{headerTitles[page]}</h1>
             <div className="choiceLinks">
                 <div className="choice" onClick={()=> setPage(0)}><p>Books Database</p></div>
-                <div className="choice" onClick={()=> setPage(1)}><AutoStoriesIcon/><p>Your Backlog Library</p></div>
-                <div className="choice" onClick={()=> setPage(2)}><StarIcon/><p>Your Wishlist</p></div>
+                <div className="choice" onClick={()=> setPage(1)}><BeenhereIcon/><p>Your Archive</p></div>
+                <div className="choice" onClick={()=> setPage(2)}><AutoStoriesIcon/><p>Your Backlog Library</p></div>
+                <div className="choice" onClick={()=> setPage(3)}><StarIcon/><p>Your Wishlist</p></div>
             </div>
         </header>
         

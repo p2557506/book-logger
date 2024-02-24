@@ -36,6 +36,7 @@ const Profile = () => {
     //When upload button is clicked get new profile details
 
     const handleUploadImage = () =>{
+        
         const formdata = new FormData();
         formdata.append("image", file)
         axios.post("http://localhost:8800/upload/" + userId, formdata)
@@ -121,8 +122,9 @@ const Profile = () => {
                 <input 
                 type="text" 
                 placeholder={username} 
-                onChange={handleNameChange}
+                onChange={handleChange}
                 name="username"/>
+                <button onClick={handleUpdateUser}>Update Profile</button>
 
             </div>
                 <label for="fileUpload">Avatar</label>
@@ -136,11 +138,11 @@ const Profile = () => {
                 
                 onChange={handleFile}
                 name="avatarImg"/>
+            <button onClick={handleUploadImage}>Update Avatar</button>
             </div>
-            <button onClick={handleUploadImage}>Upload Image</button>
 
         </div>
-            <button onClick={handleUpdateUser}>Update Profile</button>
+            
         </div>
 
         <div className="footer">

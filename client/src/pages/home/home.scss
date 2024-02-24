@@ -6,12 +6,16 @@
     height: 100vh;
 
     .introSection{
+        h1{
+            color: white;
+        }
+        color: lightgray;
         height: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: bisque;
+        background-color: #6B6B6B;
         gap: 0.5rem;
         h1{
             
@@ -19,27 +23,55 @@
         
         .websiteDesc{
             font-size: 1.25rem;
+            
         }
         
+
         .buttons{
             display: flex;
             gap: 1rem;
-            
             .brwsBtn{
+                color: white;
                 padding: 0.5rem;
                 font-size: 1rem;
+                text-decoration: none;
+                color: inherit;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 255, 0.5);
+
+                transition: ease 0.2s;
+
+                &:hover{
+                    background-color: blue;
+                }
             }
             .lrnBtn{
+                color: white;
                 padding: 0.5rem;
                 font-size: 1rem;
+                text-decoration: none;
+                color: inherit;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 255, 0.5);
+
+                transition: ease 0.2s;
+
+                &:hover{
+                    background-color: blue;
+                }
             }
         }
+        
+            
+        
         
     }
     .websiteDescSection{
         display: flex;
         padding: 2rem;
         gap: 1rem;
+        background-color: #6B6B6B;
+        border-top: 1px solid darkgray;
         
         .desc{
             flex: 0.33;
@@ -48,24 +80,38 @@
             align-items: center;
             gap: 0.5rem;
 
+            .icon{
+                color: white;
+            }
+
+            h1{
+                color: white;
+            }
+
             p{
                 font-size: 1.25rem;
+                color: lightgray;
             }
         }
     }
     .categoryContainer{
+
+        h1{
+            color: white;
+        }
         background-color: rgb(185, 214, 239);
         height: 50%;
         display: flex;
         flex-direction: column;
         padding: 2rem;
+        background-color: #6B6B6B;
+        border-top: 1px solid darkgray;
 
         h1{
             margin-bottom: 2rem;
         }
         
         .categoriesSection{
-            background-color: aliceblue;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-gap: 5px;
@@ -73,7 +119,13 @@
             
             .categoryItem{
                 border: 1px solid gray;
+                border-radius: 1rem;
+                color: white;
+                cursor: pointer;
+                
+                background-color: gray;
                 text-align: center;
+                font-size: 1.5rem;
                 padding: 4rem;
                 
                 

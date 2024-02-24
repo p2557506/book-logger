@@ -60,7 +60,7 @@ const handleSearchTerm = (e) =>{
   return (
     <nav>
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
-        <input type="text" placeholder="Search Books" onChange={handleSearchTerm}/>
+       
         <ul className="navOptions">
             <li><Link to={"/"}>Home</Link></li>
             <li><Link to={"/browse"}>Browse</Link></li>

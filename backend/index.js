@@ -199,7 +199,7 @@ app.post("/backlogOrderPush", (req,res)=>{
     })
 })
 
-app.delete("/removeBook/:id",(req,res) =>{
+app.delete("/removeBookBacklog/:id",(req,res) =>{
     const bookId = req.params.id
     const q = "DELETE from backlogOrders WHERE book_id = ?"
 
@@ -238,7 +238,7 @@ app.post("/wishlistOrderPush", (req,res)=>{
     })
 })
 
-app.delete("/removeBook/:id",(req,res) =>{
+app.delete("/removeBookWishlist/:id",(req,res) =>{
     const bookId = req.params.id
     const q = "DELETE from wishlistOrders WHERE book_id = ?"
 
@@ -307,7 +307,7 @@ app.post("/completedOrderPush", (req,res)=>{
     })
 })
 
-app.delete("/removeBook/:id",(req,res) =>{
+app.delete("/removeBookCompleted/:id",(req,res) =>{
     const bookId = req.params.id
     const q = "DELETE from completedOrders WHERE book_id = ?"
 
@@ -423,8 +423,11 @@ app.put("/profile/:id", (req,res) => {
 //UPLOAD USER AVATAR CODE BELOW
 
 app.post("/upload/:id",upload.single("image"), (req,res) =>{
-    const image = req.file.filename;
-    const q = "UPDATE users SET avatarImg = ? WHERE id = ?";
+    
+    const image = req.file.filename
+    
+    
+    const q = "UPDATE users SET `avatarImg` = ? WHERE id = ?";
     const userId = req.params.id;
     db.query(q, [image,userId], (err,data) => {
         if(err) return res.json({msg: "error"})

@@ -13,23 +13,25 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
-const Backlog = () => {
+const Archive = () => {
   
+    const [archive,setArchive] = useState([]);
+
     axios.defaults.withCredentials = true;
   const {userId,setUserId,backlogs,setBacklog} = useAuth();
   
   const [searchTerm,setSearchTerm] = useState("");
     useEffect(()=>{
-        const fetchAllBacklog = async  () =>{
+        const fetchAllArchive = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/backlogOrders/" + userId)
+                const res = await axios.get("http://localhost:8800/completedOrders/" + userId)
                 console.log(res.data)
-                setBacklog(res.data)
+                setArchive(res.data)
             } catch (err) {
                 console.log(err)
             }
         }
-        fetchAllBacklog()
+        fetchAllArchive()
     },[])
 
     const handleChange = (e) =>{
@@ -43,7 +45,7 @@ const Backlog = () => {
       <div className='booksDisplay'>
             
             <div className="booksContainer">
-                {backlogs.filter((book) =>{
+                {archive.filter((book) =>{
 
                     if(searchTerm == ""){
                         return book;
@@ -51,10 +53,10 @@ const Backlog = () => {
                         return book
                     }
 
-                    }).map(backlog => (
-                    <div className="bookItem" key={backlog.id}>
-                        <img src={backlog.cover} alt="" />
-                        <div className="title">{backlog.title}</div>
+                    }).map(archiveItem => (
+                    <div className="bookItem" key={archiveItem.id}>
+                        <img src={archiveItem.cover} alt="" />
+                        <div className="title">{archiveItem.title}</div>
                         
                         
                     </div>
@@ -67,4 +69,4 @@ const Backlog = () => {
   )
 }
 
-export default Backlog
+export default Archive
