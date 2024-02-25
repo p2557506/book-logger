@@ -43,17 +43,23 @@ const Archive = () => {
   return (
     
       <div className='booksDisplay'>
-            
+        <div className="archivePageDescription">
+            <h2>Completed</h2>
+            <p className="guideP">Add a book to your archive when you've completed it</p>
+            <p className="expP">You've reached the ending and finished the book. A job well done, whats next?</p>
+        </div>
+        <div className="pageContainer">
+
             <div className="booksContainer">
                 {archive.filter((book) =>{
-
+                    
                     if(searchTerm == ""){
                         return book;
                     } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
                         return book
                     }
-
-                    }).map(archiveItem => (
+                    
+                }).map(archiveItem => (
                     <div className="bookItem" key={archiveItem.id}>
                         <img src={archiveItem.cover} alt="" />
                         <div className="title">{archiveItem.title}</div>
@@ -64,6 +70,7 @@ const Archive = () => {
             </div>
             
             <FilteringSideBar handleChange ={handleChange}/>
+        </div>
       </div>
     
   )

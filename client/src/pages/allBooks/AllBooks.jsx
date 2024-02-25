@@ -54,15 +54,18 @@ const AllBooks = () => {
     return (
         
         <div className='booksDisplay'>
-            
+            <div className="pageDescription">
+            </div>
+            <div className="pageContainer">
+
             <div className="booksContainer">
                 {books.filter((book) =>{
-
+                    
                     if(nameTerm == "" && genreTerm == ""){
                         return book;
                     }
-
-                     
+                    
+                    
                     else if(book.genre.toLowerCase().includes(genreTerm.toLowerCase()) && book.title.toLowerCase().includes(nameTerm.toLowerCase())){
                         return book
                     } 
@@ -75,6 +78,7 @@ const AllBooks = () => {
                 ))}
             </div>
             <FilteringSideBar handleNameSearch = {handleNameSearch} handleGenreSearch = {handleGenreSearch}/>
+            </div>
       </div>
     
   )

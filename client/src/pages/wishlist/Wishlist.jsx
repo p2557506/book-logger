@@ -42,17 +42,24 @@ const Wishlist = () => {
   return (
     
       <div className='booksDisplay'>
+         <div className="wishlistPageDescription">
+            <h2>Wishlist</h2>
+            <p className="guideP">Add a book to your wishlist to track it and eventually add it to your collection</p>
+            <p className="expP">These are books you want to get some day</p>
+        </div>
+        <div className="pageContainer">
+
             
             <div className="booksContainer">
                 {wishlist.filter((book) =>{
-
+                    
                     if(searchTerm == ""){
                         return book;
                     } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
                         return book
                     }
-
-                    }).map(wishlistItem => (
+                    
+                }).map(wishlistItem => (
                     <div className="bookItem" key={wishlistItem.id}>
                         <img src={wishlistItem.cover} alt="" />
                         <div className="title">{wishlistItem.title}</div>
@@ -62,6 +69,7 @@ const Wishlist = () => {
                 ))}
             </div>
             <FilteringSideBar handleChange={handleChange}/>
+        </div>
       </div>
     
   )

@@ -27,7 +27,7 @@ const Browse = () => {
 
     axios.defaults.withCredentials = true
     const [page,setPage] = useState(0);
-    const headerTitles = ["All Books","Your Backlog","Your Wishlist"]
+    const headerTitles = ["All Books","Your Archive","Your Backlog","Your Wishlist"]
     const {auth,setAuth,userId,backlogs,setBacklog} = useAuth();
     
     //Page displayer check if user is there

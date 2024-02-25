@@ -41,27 +41,35 @@ const Backlog = () => {
   return (
     
       <div className='booksDisplay'>
-            
-            <div className="booksContainer">
-                {backlogs.filter((book) =>{
+        <div className="backlogPageDescription">
+            <h2>Backlog</h2>
+            <p className="guideP">Add a book to your backlog to track it and eventually read it</p>
+            <p className="expP">These are books you own, that you want to get around to reading some day. It just won't stop growing!</p>
+        </div>
+        
+            <div className="pageContainer">
 
-                    if(searchTerm == ""){
-                        return book;
-                    } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                        return book
-                    }
-
+                <div className="booksContainer">
+                    {backlogs.filter((book) =>{
+                        
+                        if(searchTerm == ""){
+                            return book;
+                        } else if(book.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return book
+                        }
+                        
                     }).map(backlog => (
-                    <div className="bookItem" key={backlog.id}>
-                        <img src={backlog.cover} alt="" />
-                        <div className="title">{backlog.title}</div>
-                        
-                        
-                    </div>
-                ))}
-            </div>
+                        <div className="bookItem" key={backlog.id}>
+                            <img src={backlog.cover} alt="" />
+                            <div className="title">{backlog.title}</div>
+                            
+                            
+                        </div>
+                    ))}
+                </div>
             
             <FilteringSideBar handleChange ={handleChange}/>
+            </div>
       </div>
     
   )

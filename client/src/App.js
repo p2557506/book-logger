@@ -21,10 +21,10 @@ function App() {
             <Route path="/" element={<Home/>}/>
               <Route path="/browse" element={<Browse/>}/>
               <Route path="/books/:id" element ={<Book/>}/>
-              <Route path = "/profile/:id" element={<Profile/>}/>
 
             {/*Protected routes*/}
             <Route element ={<RequireAuth/>}>
+              <Route path = "/profile/:id" element={<Profile/>}/>
               
             </Route>
             
