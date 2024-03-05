@@ -1,3 +1,9 @@
+.browsePage{
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
 .browseHeader{
     h1{
         margin-bottom: 2rem;
@@ -18,10 +24,14 @@
         .choice{
             display: flex;
             align-items: center;
+            color: lightgray;
             cursor: pointer;
             padding: 0.5rem;
+            transition: 0.2s ease;
+            border-radius: 5px;
             &:hover{
-                background-color: lightgray;
+                background-color: gray;
+                color: white;
             }
         }
     }
@@ -75,20 +85,24 @@
             color: lightgray;
         }
     }
+    .pageBox{
+
+    background-color: #6B6B6B;
+    
     .pageContainer{
         display: flex;
         justify-content: center;
         padding: 1rem 0;
         gap: 2rem;
         height: 100vh;
-        background-color: #6B6B6B;
         color: white;
 
+        
     
     .booksContainer{
         display: grid;
-        grid-template-columns: repeat(5,150px);
-        grid-auto-rows: 300px;
+        grid-template-columns: repeat(5,160px);
+        grid-auto-rows: 250px;
         gap: 1rem;
         .bookItem{
 
@@ -117,6 +131,391 @@
             }
         }
     }
-}
     
+
+    
+}
+.paginationBtns{
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    
+
+    a{
+        padding: 10px;
+        margin: 8px;
+        border-radius: 5px;
+        border: 1px solid blue;
+        color: blue;
+        cursor: pointer;
+        transition: 0.2s ease;
+
+        &:hover{
+            color: white;
+            background-color: blue;
+        }
+    }
+
+    .paginationActive a{
+        color: white;
+        background-color:blue;
+    }
+}
+}
+}
+}
+.footer{
+    margin-top: auto;
+}
+//Responsivity
+@media (max-width: 1024px){
+    .browsePage{
+
+        min-height: 100vh;
+        
+    
+    .browseHeader{
+        h1{
+            margin-bottom: 2rem;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        border-bottom: solid 1px black;
+        background-color: #6B6B6B;
+        color: red;
+        .choiceLinks{
+            display: flex;
+            gap: 2rem;
+            cursor: pointer;
+    
+    
+            .choice{
+                display: flex;
+                align-items: center;
+                color: lightgray;
+                cursor: pointer;
+                padding: 0.5rem;
+                transition: 0.2s ease;
+                border-radius: 5px;
+                &:hover{
+                    background-color: gray;
+                    color: white;
+                }
+            }
+        }
+    }
+    .booksDisplay{
+        
+        .backlogPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: crimson;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: lightgray;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .wishlistPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: navy;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: white;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .archivePageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: green;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: white;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .pageBox{
+    
+        background-color: #6B6B6B;
+        
+        .pageContainer{
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+            gap: 2rem;
+            height: 100vh;
+            color: white;
+    
+            
+        
+        .booksContainer{
+            display: grid;
+            grid-template-columns: repeat(3,200px);
+            grid-auto-rows: 300px;
+            gap: 1rem;
+            
+            .bookItem{
+    
+                img{
+                    width: 200px;
+                    height: auto;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                }
+    
+                .readingState{
+                    display: flex;
+                    
+                    border: solid 1px gray;
+                    width: fit-content;
+                   
+                    
+    
+                    .state{
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: gray;
+                        }
+                    }
+                }
+            }
+        }
+        
+    
+    }
+    .paginationBtns{
+        width: 80%;
+        height: 40px;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        
+    
+        a{
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid blue;
+            color: blue;
+            cursor: pointer;
+            transition: 0.2s ease;
+    
+            &:hover{
+                color: white;
+                background-color: blue;
+            }
+        }
+    
+        .paginationActive a{
+            color: white;
+            background-color:blue;
+        }
+    }
+    }
+    }
+    
+}
+.footer{
+    
+}
+}
+@media (max-width: 768px){
+    .browsePage{
+
+        min-height: 100vh;
+        
+    
+    .browseHeader{
+        h1{
+            margin-bottom: 2rem;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        border-bottom: solid 1px black;
+        background-color: #6B6B6B;
+        color: purple;
+        .choiceLinks{
+            display: flex;
+            gap: 2rem;
+            cursor: pointer;
+    
+    
+            .choice{
+                display: flex;
+                align-items: center;
+                color: lightgray;
+                cursor: pointer;
+                padding: 0.5rem;
+                transition: 0.2s ease;
+                border-radius: 5px;
+                &:hover{
+                    background-color: gray;
+                    color: white;
+                }
+            }
+        }
+    }
+    .booksDisplay{
+        
+        .backlogPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: crimson;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: lightgray;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .wishlistPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: navy;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: white;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .archivePageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: green;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: white;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        .pageBox{
+        
+        background-color: #6B6B6B;
+        
+        .pageContainer{
+            display: flex;
+
+            padding: 1rem 0;
+            gap: 2rem;
+            height: 100vh;
+            color: white;
+    
+            
+        
+        .booksContainer{
+            display: grid;
+            grid-template-columns: repeat(4,300px);
+            
+            gap: 1rem;
+            
+            
+            .bookItem{
+    
+                img{
+                    width: 200px;
+                    height: auto;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                }
+    
+                .readingState{
+                    display: flex;
+                    
+                    border: solid 1px gray;
+                    width: fit-content;
+                   
+                    
+    
+                    .state{
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: gray;
+                        }
+                    }
+                }
+            }
+        }
+        
+    
+    }
+    .paginationBtns{
+        width: 80%;
+        height: 40px;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        
+    
+        a{
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid blue;
+            color: blue;
+            cursor: pointer;
+            transition: 0.2s ease;
+    
+            &:hover{
+                color: white;
+                background-color: blue;
+            }
+        }
+    
+        .paginationActive a{
+            color: white;
+            background-color:blue;
+        }
+    }
+    }
+    }
+    
+}
+.footer{
+    
+}
 }

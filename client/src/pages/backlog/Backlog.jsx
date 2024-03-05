@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
+import ReactPaginate from "react-paginate"
+
 const Backlog = () => {
   
     axios.defaults.withCredentials = true;
@@ -36,6 +38,20 @@ const Backlog = () => {
         setSearchTerm(e.target.value);
 
     }
+
+    //PAGINATION
+    const [pageNumber,setPageNumber] = useState(0);
+
+    const booksPerPage = 15;
+    const pagesVisited = pageNumber * booksPerPage;
+
+    
+
+    const pageCount = Math.ceil(backlogs.length / booksPerPage)
+    
+    const changePage = ({selected}) => {
+        setPageNumber(selected)
+    }
     
 
   return (
@@ -46,6 +62,8 @@ const Backlog = () => {
             <p className="guideP">Add a book to your backlog to track it and eventually read it</p>
             <p className="expP">These are books you own, that you want to get around to reading some day. It just won't stop growing!</p>
         </div>
+        <div className="pageBox">
+
         
             <div className="pageContainer">
 
@@ -69,6 +87,18 @@ const Backlog = () => {
                 </div>
             
             <FilteringSideBar handleChange ={handleChange}/>
+            </div>
+            <ReactPaginate
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
             </div>
       </div>
     

@@ -435,6 +435,16 @@ app.post("/upload/:id",upload.single("image"), (req,res) =>{
     })
 })
 
+//Number Of books by genre
+app.get("/genre/:type", (req,res)=>{
+    const genre = req.params.type
+    const q = "SELECT COUNT(id) AS count FROM books WHERE genre = ?;"
+    db.query(q,[genre],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 
 
 app.listen(8800, ()=>{

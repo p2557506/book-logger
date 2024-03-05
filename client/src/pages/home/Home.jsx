@@ -57,13 +57,14 @@ const Home = () => {
             <p>Keep track of your video game backlog. Use the default Played, Playing, Backlog and Wish List shelves created for you, or create your own virtual shelves to categorize your games however you want. You can also automatically import your Steam library to easily manage your collection.</p>
           </div>
         </div>
+        {/**Popular category gives random 10 books */}
         <div className="categoryContainer">
           <h1>Popular Categories</h1>
           <div className="categoriesSection">
-            <div className="categoryItem">Fiction</div>
-            <div className="categoryItem">Non-Fiction</div>
-            <div className="categoryItem">Mystery</div>
-            <div className="categoryItem">SciFi</div>
+            <div className="categoryAdv">Adventure</div>
+            <div className="categoryFan">Fantasy</div>
+            <div className="categorySci">Sci-Fi</div>
+            <div className="categoryCom">Comic</div>
 
           </div>
         </div>

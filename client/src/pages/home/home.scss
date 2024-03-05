@@ -117,19 +117,60 @@
             grid-gap: 5px;
             
             
-            .categoryItem{
-                border: 1px solid gray;
+            .categoryAdv{
+                
                 border-radius: 1rem;
                 color: white;
                 cursor: pointer;
                 
-                background-color: gray;
+                background-color: lightblue;
                 text-align: center;
                 font-size: 1.5rem;
                 padding: 4rem;
                 
                 
             }
+            .categoryFan{
+                
+                border-radius: 1rem;
+                color: white;
+                cursor: pointer;
+                
+                background-color: green;
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 4rem;
+                
+                
+            }
+            .categorySci{
+                
+                border-radius: 1rem;
+                color: white;
+                cursor: pointer;
+                
+                background-color: red;
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 4rem;
+                
+                
+            }
+            .categoryCom{
+                
+                border-radius: 1rem;
+                color: white;
+                cursor: pointer;
+                
+                background-color: purple;
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 4rem;
+                
+                
+            }
+            
         }
     }
 }
+

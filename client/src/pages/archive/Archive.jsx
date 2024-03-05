@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
+import ReactPaginate from "react-paginate"
+
 const Archive = () => {
   
     const [archive,setArchive] = useState([]);
@@ -38,6 +40,20 @@ const Archive = () => {
         setSearchTerm(e.target.value);
 
     }
+
+    //PAGINATION
+    const [pageNumber,setPageNumber] = useState(0);
+
+    const booksPerPage = 15;
+    const pagesVisited = pageNumber * booksPerPage;
+
+    
+
+    const pageCount = Math.ceil(archive.length / booksPerPage)
+    
+    const changePage = ({selected}) => {
+        setPageNumber(selected)
+    }
     
 
   return (
@@ -48,6 +64,9 @@ const Archive = () => {
             <p className="guideP">Add a book to your archive when you've completed it</p>
             <p className="expP">You've reached the ending and finished the book. A job well done, whats next?</p>
         </div>
+        <div className="pageBox">
+
+        
         <div className="pageContainer">
 
             <div className="booksContainer">
@@ -70,6 +89,18 @@ const Archive = () => {
             </div>
             
             <FilteringSideBar handleChange ={handleChange}/>
+        </div>
+        <ReactPaginate
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
         </div>
       </div>
     

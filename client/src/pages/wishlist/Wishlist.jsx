@@ -14,6 +14,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
 
+import ReactPaginate from "react-paginate"
+
 const Wishlist = () => {
   const [wishlist,setWishlist] = useState([]);
 
@@ -39,6 +41,20 @@ const Wishlist = () => {
 
     }
 
+    //PAGINATION
+    const [pageNumber,setPageNumber] = useState(0);
+
+    const booksPerPage = 15;
+    const pagesVisited = pageNumber * booksPerPage;
+
+    
+
+    const pageCount = Math.ceil(wishlist.length / booksPerPage)
+    
+    const changePage = ({selected}) => {
+        setPageNumber(selected)
+    }
+
   return (
     
       <div className='booksDisplay'>
@@ -47,6 +63,9 @@ const Wishlist = () => {
             <p className="guideP">Add a book to your wishlist to track it and eventually add it to your collection</p>
             <p className="expP">These are books you want to get some day</p>
         </div>
+        <div className="pageBox">
+
+        
         <div className="pageContainer">
 
             
@@ -69,6 +88,18 @@ const Wishlist = () => {
                 ))}
             </div>
             <FilteringSideBar handleChange={handleChange}/>
+        </div>
+        <ReactPaginate
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
         </div>
       </div>
     

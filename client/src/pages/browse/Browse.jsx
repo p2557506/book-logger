@@ -30,6 +30,8 @@ const Browse = () => {
     const headerTitles = ["All Books","Your Archive","Your Backlog","Your Wishlist"]
     const {auth,setAuth,userId,backlogs,setBacklog} = useAuth();
     
+    const [selected,setSelected] = useState(headerTitles[0])
+
     //Page displayer check if user is there
     const PageDisplay = () =>{
         
@@ -63,7 +65,17 @@ const Browse = () => {
         fetchAllBooks()
     },[])
 
-    
+   //GENRES
+   /**
+    * SCI-FI
+    * FANTASY
+    * HISTORICAL FICTION
+    * ADVENTURE
+    * BIOGRAPHY
+    * RELIGION AND SPIRITUALITY
+    * BUSINESS AND MONEY
+    * MYSTERY
+    */
 
     
 
@@ -71,19 +83,25 @@ const Browse = () => {
   return (
     <div>
         <Navbar/>
-        <header className="browseHeader">
-            <h1>{headerTitles[page]}</h1>
-            <div className="choiceLinks">
-                <div className="choice" onClick={()=> setPage(0)}><p>Books Database</p></div>
-                <div className="choice" onClick={()=> setPage(1)}><BeenhereIcon/><p>Your Archive</p></div>
-                <div className="choice" onClick={()=> setPage(2)}><AutoStoriesIcon/><p>Your Backlog Library</p></div>
-                <div className="choice" onClick={()=> setPage(3)}><StarIcon/><p>Your Wishlist</p></div>
-            </div>
-        </header>
-        
-        <div className="pageDisplay">{PageDisplay()}</div>
+        <div className='browsePage'>
 
-        <Footer/>
+            <header className="browseHeader">
+                <h1>{headerTitles[page]}</h1>
+                <div className="choiceLinks">
+                    <div className="choice" active={selected} onClick={()=> setPage(0)}><p>Books Database</p></div>
+                    <div className="choice" onClick={()=> setPage(1)}><BeenhereIcon/><p>Your Archive</p></div>
+                    <div className="choice" onClick={()=> setPage(2)}><AutoStoriesIcon/><p>Your Backlog Library</p></div>
+                    <div className="choice" onClick={()=> setPage(3)}><StarIcon/><p>Your Wishlist</p></div>
+                </div>
+            </header>
+            
+            <div className="pageDisplay">{PageDisplay()}</div>
+
+        </div>
+        <div className="footer">
+
+            <Footer/>
+        </div>
     </div>
   )
 }

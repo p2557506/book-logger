@@ -58,14 +58,21 @@ const handleSearchTerm = (e) =>{
 }
 
   return (
-    <nav>
+    <nav className="navbar">
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
-       
-        <ul className="navOptions">
-            <li><Link to={"/"}>Home</Link></li>
-            <li><Link to={"/browse"}>Browse</Link></li>
-            
-        </ul>
+        <a href="#" className="toggleButton">
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </a>
+        <div className="navOptions">
+          <ul>
+              <li><Link to={"/"}>Home</Link></li>
+              <li><Link to={"/browse"}>Browse</Link></li>
+              
+          </ul>
+
+        </div>
         
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
