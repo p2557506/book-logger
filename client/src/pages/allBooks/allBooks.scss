@@ -1,0 +1,321 @@
+.booksDisplay{
+    
+    height: 100%;
+    .backlogPageDescription{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        background-color: crimson;
+        h2{
+            color: white;
+        }
+        .guideP{
+            color: lightgray;
+        }
+        .expP{
+            color: lightgray;
+        }
+    }
+    
+    .pageBox{
+
+    background-color: #6B6B6B;
+    
+    .pageContainer{
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        
+        height: 100vh;
+        color: white;
+        height: 100%;
+
+        
+    
+    .booksContainer{
+       display: grid;
+        grid-template-columns: repeat(5,140px);
+        grid-auto-rows: 250px;
+        
+        margin-left: 2rem;
+        margin-right: 1rem;
+        height: 100%;
+        
+        
+        
+        .bookItem{
+
+            img{
+                width: 130px;
+                height: auto;
+                border: 1px solid white;
+                border-radius: 5px;
+            }
+
+            .readingState{
+                display: flex;
+                
+                border: solid 1px gray;
+                width: fit-content;
+               
+                
+
+                .state{
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: gray;
+                    }
+                }
+            }
+        }
+    
+    }
+}
+.paginationBtns{
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    
+
+    a{
+        padding: 10px;
+        margin: 8px;
+        border-radius: 5px;
+        border: 1px solid blue;
+        color: blue;
+        cursor: pointer;
+        transition: 0.2s ease;
+
+        &:hover{
+            color: white;
+            background-color: blue;
+        }
+    }
+
+    .paginationActive a{
+        color: white;
+        background-color:blue;
+    }
+}
+}
+}
+//Responsivity
+@media (max-width: 1024px){
+    .booksDisplay{
+    
+        height: 100%;
+        .backlogPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: crimson;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: lightgray;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        
+        .pageBox{
+    
+        background-color: #6B6B6B;
+        
+        .pageContainer{
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            
+            height: 100vh;
+            color: white;
+            height: 100%;
+    
+            
+        
+        .booksContainer{
+           display: grid;
+            grid-template-columns: repeat(3,160px);
+            grid-auto-rows: 250px;
+            gap: 1rem;
+            margin-left: 2rem;
+            margin-right: 1rem;
+            height: 100%;
+            
+            
+            
+            .bookItem{
+    
+                img{
+                    width: 150px;
+                    height: auto;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                }
+    
+                .readingState{
+                    display: flex;
+                    
+                    border: solid 1px gray;
+                    width: fit-content;
+                   
+                    
+    
+                    .state{
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: gray;
+                        }
+                    }
+                }
+            }
+        
+        }
+    }
+    .paginationBtns{
+        width: 80%;
+        height: 40px;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        
+    
+        a{
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid blue;
+            color: blue;
+            cursor: pointer;
+            transition: 0.2s ease;
+    
+            &:hover{
+                color: white;
+                background-color: blue;
+            }
+        }
+    
+        .paginationActive a{
+            color: white;
+            background-color:blue;
+        }
+    }
+    }
+    }
+}
+@media (max-width: 768px){
+    .booksDisplay{
+    
+        height: 100%;
+        .backlogPageDescription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: crimson;
+            h2{
+                color: white;
+            }
+            .guideP{
+                color: lightgray;
+            }
+            .expP{
+                color: lightgray;
+            }
+        }
+        
+        .pageBox{
+    
+        background-color: #6B6B6B;
+        
+        .pageContainer{
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            height: 100%;
+    
+            
+        
+        .booksContainer{
+           display: grid;
+            grid-template-columns: repeat(3,160px);
+            grid-auto-rows: 250px;
+            gap: 1rem;
+            margin-left: 2rem;
+            margin-right: 1rem;
+            height: 100%;
+            
+            
+            
+            .bookItem{
+    
+                img{
+                    width: 150px;
+                    height: auto;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                }
+    
+                .readingState{
+                    display: flex;
+                    
+                    border: solid 1px gray;
+                    width: fit-content;
+                   
+                    
+    
+                    .state{
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: gray;
+                        }
+                    }
+                }
+            }
+        
+        }
+    }
+    .paginationBtns{
+        width: 100%;
+        height: 40px;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        
+    
+        a{
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid blue;
+            color: blue;
+            cursor: pointer;
+            transition: 0.2s ease;
+    
+            &:hover{
+                color: white;
+                background-color: blue;
+            }
+        }
+    
+        .paginationActive a{
+            color: white;
+            background-color:blue;
+        }
+    }
+    }
+    }
+}

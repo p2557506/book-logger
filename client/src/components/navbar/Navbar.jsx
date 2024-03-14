@@ -57,10 +57,14 @@ const handleSearchTerm = (e) =>{
   setSearchTerm(e.target.value)
 }
 
+
+
+
+
   return (
     <nav className="navbar">
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
-        <a href="#" className="toggleButton">
+        <a  href="#" className="toggleButton">
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>

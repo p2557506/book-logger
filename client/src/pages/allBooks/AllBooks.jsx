@@ -13,7 +13,7 @@ import useAuth from '../../hooks/useAuth';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import FilteringSideBar from '../../components/filteringSideBar/FilteringSideBar';
-
+import "./allBooks.scss" 
 import ReactPaginate from "react-paginate";
 
 const AllBooks = () => {
@@ -69,7 +69,7 @@ const AllBooks = () => {
     //Filter for genre aswell
     return (
         
-        <div className='booksDisplay'>
+        <div className="booksDisplay">
             <div className="pageDescription">
             </div>
             <div className="pageBox">
@@ -101,6 +101,7 @@ const AllBooks = () => {
 
                     </div>
                 </div>
+                
                 <ReactPaginate
                     previousLabel={"Prev"}
                     nextLabel={"Next"}
@@ -112,6 +113,8 @@ const AllBooks = () => {
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
+
+                
                 </div>
                 
 

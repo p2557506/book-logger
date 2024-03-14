@@ -83,7 +83,7 @@ const Browse = () => {
   return (
     <div>
         <Navbar/>
-        <div className='browsePage'>
+        <div className="browsePage">
 
             <header className="browseHeader">
                 <h1>{headerTitles[page]}</h1>
