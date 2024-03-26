@@ -76,8 +76,6 @@ const handleSearchTerm = (e) =>{
               
           </ul>
 
-        </div>
-        
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
             
@@ -89,7 +87,12 @@ const handleSearchTerm = (e) =>{
 
               
             </div>}
+        </div>
+        
+
+        
           
+        
         
     </nav>
   )

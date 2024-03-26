@@ -17,6 +17,38 @@
             color: lightgray;
         }
     }
+    .wishlistPageDescription{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        background-color: blue;
+        h2{
+            color: white;
+        }
+        .guideP{
+            color: lightgray;
+        }
+        .expP{
+            color: lightgray;
+        }
+    }
+    .archivePageDescription{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        background-color: green;
+        h2{
+            color: white;
+        }
+        .guideP{
+            color: lightgray;
+        }
+        .expP{
+            color: lightgray;
+        }
+    }
     
     .pageBox{
 
@@ -41,6 +73,7 @@
         margin-left: 2rem;
         margin-right: 1rem;
         height: 100%;
+        height: 100vh;
         
         
         

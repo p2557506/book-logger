@@ -46,6 +46,9 @@
         }
     }
     .navOptions{
+        display: flex;
+        align-items: center;
+        gap: 10rem;
         ul{
             list-style: none;
             display: flex;
@@ -70,175 +73,37 @@
             }
             
         }
-    }
-
-    .dropdown{
-        position: relative;
-
-        img{
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            &:hover{
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-        }
-
-        
-
-        .content{
-            background-color: #6B6B6B;
-            position: absolute;
-            min-width: 100px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-            display: none;
-            a{
-                display: block;
-                color: white; 
-                text-decoration: none;
+        .btns{
+            display: flex;
+            gap: 1rem;
+            
+            .logBtn{
                 padding: 0.5rem 1rem;
-
-                &:hover{
-                    background-color: gray;
-                }
-            }
-
-        }
-
-        &:hover .content{
-            display: block;
-        }
-        
-
-        
-    }
-
-    
-
-    .btns{
-        display: flex;
-        gap: 1rem;
-        
-        .logBtn{
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            text-decoration: none;
-            color: white;
-            transition: ease 0.2s;
-            
-            background-color: rgba(32, 178, 171, 0.700);
-            &:hover{
-                background-color: rgba(32,178,171);
-            }
-            
-        }
-        .signUpBtn{
-            background-color: lightseagreen;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            text-decoration: none;
-            color: white;
-            transition: ease 0.2s;
-
-            background-color: rgba(32, 178, 171, 0.700);
-            &:hover{
-                background-color: rgba(32,178,171);
-            }
-        }
-    }
-}
-
-@media(max-width: 1024px){
-    .navbar{
-    
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        background-color: gray;
-        position:sticky;
-        top: 0;
-        z-index: 100;
-        width: 100%;
-        justify-content: space-around;
-        padding: 1rem;
-        color:white;
-    
-        h1{
-            A{
+                font-size: 1rem;
                 text-decoration: none;
-                color: inherit;
-            }
-        }
-    
-        input{
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-    
-        .toggleButton{
-            position: absolute;
-           
-            right: 3rem;
-            top: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 21px;
-            width: 30px;
-    
-            .bar{
-                height: 3px;
-                width: 100%;
-                background-color: white;
-                border-radius: 10px;
-            }
-        }
-        .navOptions{
-            /*display: none;*/
-            width: 100%;
-            
-            
-            
-            
-            ul{
-                list-style: none;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                font-size: 1.25rem;
-    
+                color: white;
+                transition: ease 0.2s;
                 
-                
-                li{
-                    cursor: pointer;
-                    border-bottom: solid 1px transparent;
-                    transition: 0.2s;
-                    text-align: center;
-                    
-                    a{
-                        text-decoration: none;
-                        color: inherit;
-                        
-                        
-                    }
-                    
-                    &:hover{
-                        border-bottom: solid 1px white;
-                        
-                    }
+                background-color: rgba(32, 178, 171, 0.700);
+                &:hover{
+                    background-color: rgba(32,178,171);
                 }
                 
             }
-        }
-
-        .navOptions.active{
-            display: flex;
-        }
-       
-        
+            .signUpBtn{
+                background-color: lightseagreen;
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+                text-decoration: none;
+                color: white;
+                transition: ease 0.2s;
     
+                background-color: rgba(32, 178, 171, 0.700);
+                &:hover{
+                    background-color: rgba(32,178,171);
+                }
+            }
+        }
         .dropdown{
             position: relative;
     
@@ -280,39 +145,183 @@
     
             
         }
+    }
+
     
+
+    
+
+    
+}
+
+@media(max-width: 768px){
+    .navbar{
+    
+        display: flex;
         
+        align-items: flex-start;
+       
+        flex-direction: column;
+        background-color: gray;
+        position:sticky;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        
+        padding: 1rem;
+        color:white;
     
-        .btns{
-            display: flex;
-            gap: 1rem;
-            
-            .logBtn{
-                padding: 0.5rem 1rem;
-                font-size: 1rem;
+        h1{
+            A{
                 text-decoration: none;
-                color: white;
-                transition: ease 0.2s;
-                
-                background-color: rgba(32, 178, 171, 0.700);
-                &:hover{
-                    background-color: rgba(32,178,171);
-                }
-                
-            }
-            .signUpBtn{
-                background-color: lightseagreen;
-                padding: 0.5rem 1rem;
-                font-size: 1rem;
-                text-decoration: none;
-                color: white;
-                transition: ease 0.2s;
-    
-                background-color: rgba(32, 178, 171, 0.700);
-                &:hover{
-                    background-color: rgba(32,178,171);
-                }
+                color: inherit;
             }
         }
+    
+        input{
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+    
+        .toggleButton{
+            position: absolute;
+           
+            right: 3rem;
+            top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 21px;
+            width: 30px;
+    
+            .bar{
+                height: 3px;
+                width: 100%;
+                background-color: white;
+                border-radius: 10px;
+            }
+        }
+        .navOptions{
+            display: none;
+            width: 100%;
+            align-items: flex-start;
+            
+            
+            
+            
+            
+            ul{
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 1rem;
+                font-size: 1.25rem;
+    
+                
+                
+                li{
+                    cursor: pointer;
+                    border-bottom: solid 1px transparent;
+                    transition: 0.2s;
+                    text-align: center;
+                    
+                    a{
+                        text-decoration: none;
+                        color: inherit;
+                        
+                        
+                    }
+                    
+                    &:hover{
+                        border-bottom: solid 1px white;
+                        
+                    }
+                }
+                
+            }
+            .dropdown{
+                position: relative;
+                display: flex;
+                align-items: center;
+        
+                img{
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgba(0, 0, 0, 0.1);
+                    }
+                }
+        
+                
+        
+                .content{
+                    background-color: #6B6B6B;
+                    position: absolute;
+                    min-width: 100px;
+                    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+                    display: none;
+                    a{
+                        display: block;
+                        color: white; 
+                        text-decoration: none;
+                        padding: 0.5rem 1rem;
+        
+                        &:hover{
+                            background-color: gray;
+                        }
+                    }
+        
+                }
+        
+                &:hover .content{
+                    display: block;
+                }
+                
+        
+                
+            }
+            .btns{
+                display: flex;
+                gap: 1rem;
+                
+                .logBtn{
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                    text-decoration: none;
+                    color: white;
+                    transition: ease 0.2s;
+                    
+                    background-color: rgba(32, 178, 171, 0.700);
+                    &:hover{
+                        background-color: rgba(32,178,171);
+                    }
+                    
+                }
+                .signUpBtn{
+                    background-color: lightseagreen;
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                    text-decoration: none;
+                    color: white;
+                    transition: ease 0.2s;
+        
+                    background-color: rgba(32, 178, 171, 0.700);
+                    &:hover{
+                        background-color: rgba(32,178,171);
+                    }
+                }
+            }
+            
+        }
+
+        .navOptions.active{
+            display: flex;
+        }
+       
     }
 }
