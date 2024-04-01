@@ -204,7 +204,7 @@
             }
         }
         .navOptions{
-            display: flex;
+            display: none;
             width: 100%;
             align-items: flex-start;
             margin-top: 1rem;
@@ -324,12 +324,16 @@
                     }
                 }
             }
+
+            
             
         }
-
         .navOptions.active{
             display: flex;
         }
+
+
+        
        
     }
 }

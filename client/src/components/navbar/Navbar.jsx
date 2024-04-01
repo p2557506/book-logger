@@ -59,6 +59,12 @@ console.log(navOptions)
 
 
 
+const handleActiveClick = () => {
+  navOptions.classList.toggle("active");
+}
+
+
+
 
 
 
@@ -66,7 +72,7 @@ console.log(navOptions)
   return (
     <nav className="navbar">
         <h1 className="logo"><Link to={"/"}>BookLogger</Link></h1>
-        <a  href="#" className="toggleButton">
+        <a  href="#" className="toggleButton" onClick={handleActiveClick}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
@@ -98,6 +104,7 @@ console.log(navOptions)
         
     </nav>
   )
+  
 }
 
 export default Navbar
