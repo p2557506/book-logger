@@ -146,6 +146,8 @@
             
         }
     }
+    
+    
 
     
 
@@ -163,9 +165,9 @@
        
         flex-direction: column;
         background-color: gray;
-        position:sticky;
+       
         top: 0;
-        z-index: 100;
+        
         width: 100%;
         
         padding: 1rem;
@@ -202,11 +204,11 @@
             }
         }
         .navOptions{
-            display: none;
+            display: flex;
             width: 100%;
             align-items: flex-start;
-            
-            
+            margin-top: 1rem;
+
             
             
             
@@ -216,7 +218,7 @@
                 flex-direction: column;
                 align-items: flex-start;
                 width: 100%;
-                gap: 1rem;
+                
                 font-size: 1.25rem;
     
                 
@@ -264,12 +266,12 @@
                     position: absolute;
                     min-width: 100px;
                     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-                    display: none;
+                    
                     a{
                         display: block;
                         color: white; 
                         text-decoration: none;
-                        padding: 0.5rem 1rem;
+                        
         
                         &:hover{
                             background-color: gray;
@@ -288,6 +290,10 @@
             .btns{
                 display: flex;
                 gap: 1rem;
+                flex-direction: column;
+                
+                margin-right: 2rem;
+                width: 30%;
                 
                 .logBtn{
                     padding: 0.5rem 1rem;
@@ -295,6 +301,7 @@
                     text-decoration: none;
                     color: white;
                     transition: ease 0.2s;
+                    text-align: center;
                     
                     background-color: rgba(32, 178, 171, 0.700);
                     &:hover{
@@ -309,6 +316,7 @@
                     text-decoration: none;
                     color: white;
                     transition: ease 0.2s;
+                    text-align: center;
         
                     background-color: rgba(32, 178, 171, 0.700);
                     &:hover{

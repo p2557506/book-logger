@@ -11,11 +11,11 @@ const Navbar = () => {
   axios.defaults.withCredentials = true
   //User details
   
-  const [id,setId] = useState();
+ 
   
 
   const location = useLocation();
-  const route = location.pathname.split("/")[1];
+  
 
   useEffect(() => {
     const fetchProfile = async  (e) =>{
@@ -52,10 +52,12 @@ const handleLogout =  async () =>{
 }
 console.log(avatarImg)
 
-const handleSearchTerm = (e) =>{
-  console.log(e.target.value)
-  setSearchTerm(e.target.value)
-}
+//Navbar Toggle
+const toggleButton = document.getElementsByClassName("toggleButton")[0];
+const navOptions = document.getElementsByClassName("navOptions")[0];
+console.log(navOptions)
+
+
 
 
 

@@ -7,6 +7,7 @@
         align-items: center;
         padding: 1rem;
         background-color: crimson;
+        flex-wrap: wrap;
         h2{
             color: white;
         }
@@ -15,6 +16,7 @@
         }
         .expP{
             color: lightgray;
+            text-align: center;
         }
     }
     .wishlistPageDescription{
@@ -259,9 +261,11 @@
             }
             .guideP{
                 color: lightgray;
+
             }
             .expP{
                 color: lightgray;
+                
             }
         }
         
