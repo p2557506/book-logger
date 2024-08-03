@@ -5,6 +5,7 @@ import cookeieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
 import multer from "multer"
 import path from "path"
+import { configDotenv } from "dotenv"
 
 import bcrypt, { hash } from "bcrypt"
 
@@ -12,12 +13,18 @@ const saltRounds = 10
 
 const app = express();
 
-const db = mysql.createConnection({
+//URL For railway
+const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
+
+/*  /* const db = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",
-    database:"book_logger_db"
-})
+    database:"book_logger_db",
+ }) */
+
+//Local now no longer is functional
+const db = mysql.createConnection(urlDB)
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
