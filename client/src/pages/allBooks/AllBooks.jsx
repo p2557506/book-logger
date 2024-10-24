@@ -52,11 +52,12 @@ const AllBooks = () => {
         console.log(e.target.value)
 
     }
-    
+    //Use for proper site
+    //${process.env.REACT_APP_BACKEND_URL}
     useEffect(()=>{
         const fetchAllBooks = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/books")
+                const res = await axios.get(`http://localhost:8800/books`)
                 console.log(res.data)
                 setBooks(res.data)
                 setBookie(res.data[0])

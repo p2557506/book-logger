@@ -14,17 +14,17 @@ const saltRounds = 10
 const app = express();
 
 //URL For railway
-const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
+//const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
 
-/*  /* const db = mysql.createConnection({
+ const db = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",
     database:"book_logger_db",
- }) */
+ }) 
 
 //Local now no longer is functional
-const db = mysql.createConnection(urlDB)
+//const db = mysql.createConnection(urlDB)
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
