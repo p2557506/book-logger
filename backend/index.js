@@ -45,13 +45,7 @@ const upload = multer({
 //Middleware to accept json as body object to requests
 app.use(express.json())
 app.use(cookeieParser())
-app.use(cors(
-    {
-        origin: "http://localhost:3000",
-        credentials:true
-        
-    }
-))
+app.use(cors())
 app.use(express.static("public"));
 
 //JWT Section
