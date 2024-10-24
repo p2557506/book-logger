@@ -10,12 +10,13 @@ import { configDotenv } from "dotenv"
 import * as bcrypt from "bcryptjs"
 
 const saltRounds = 10
+ 
 
 const app = express();
 
 //URL For railway
 //const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
-
+//const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
  const db = mysql.createConnection({
     host:"localhost",
     user:"root",
@@ -452,8 +453,8 @@ app.get("/genre/:type", (req,res)=>{
     })
 })
 
+const port = process.env.PORT || 8800
 
-
-app.listen(8800, ()=>{
+app.listen(port, ()=>{
     console.log("Wishlist,Backlog and Archive Books")
 })
