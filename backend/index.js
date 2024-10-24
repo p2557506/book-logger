@@ -7,7 +7,7 @@ import multer from "multer"
 import path from "path"
 import { configDotenv } from "dotenv"
 
-import bcrypt, { hash } from "bcryptjs"
+import * as bcrypt from "bcryptjs"
 
 const saltRounds = 10
 
