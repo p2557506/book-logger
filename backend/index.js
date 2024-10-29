@@ -1,5 +1,5 @@
 import express, { response } from "express"
-import mysql from "mysql"
+import mysql from "mysql2"
 import cors from "cors"
 import cookeieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
@@ -45,7 +45,7 @@ const upload = multer({
 //Middleware to accept json as body object to requests
 app.use(express.json())
 app.use(cookeieParser())
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.static("public"));
 
 //JWT Section
