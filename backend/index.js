@@ -16,7 +16,7 @@ const app = express();
 
 //URL For railway
 //const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
-const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
+//const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
  const db = mysql.createConnection({
     connectionLimit: 10,
     host: '127.0.0.1',
@@ -24,7 +24,7 @@ const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
     password: 'password',
     database: 'book_logger_db',
     debug: false,
-    port: '8889'
+    port: '3306'
  }) 
 
 //Local now no longer is functional
