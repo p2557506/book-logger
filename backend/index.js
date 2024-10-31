@@ -52,9 +52,21 @@ const upload = multer({
 })
 
 //Middleware to accept json as body object to requests
+
+const allowedOrigins = ['https://booklogger.netlify.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  };
+
 app.use(express.json())
 app.use(cookeieParser())
-app.use(cors({credentials: true, origin: 'https://booklogger.netlify.app'}));
+app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 //JWT Section
