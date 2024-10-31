@@ -70,7 +70,7 @@ export const AuthProvider = ({children}) =>{
    /*  useEffect(() => {
         const fetchProfile = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/profile")
+                const res = await axios.get("https://book-logger-app.onrender.com/profile")
                 console.log(res.username)
                 
             } catch (err) {

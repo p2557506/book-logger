@@ -21,7 +21,7 @@ const Navbar = () => {
     const fetchProfile = async  (e) =>{
       
         try {
-            const res = await axios.get("http://localhost:8800/profile")
+            const res = await axios.get("https://book-logger-app.onrender.com/profile")
             if(res.data.status == "logged in"){
               setAuth(true)
               setUsername(res.data.username)
@@ -43,7 +43,7 @@ const Navbar = () => {
 
 const handleLogout =  async () =>{
   try {
-    const res = await axios.get("http://localhost:8800/logout")
+    const res = await axios.get("https://book-logger-app.onrender.com/logout")
     console.log(res.data.status);
     window.location.reload(true);
   } catch (err) {
@@ -87,7 +87,7 @@ const handleActiveClick = () => {
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
             
-            <img  src={`http://localhost:8800/images/${avatarImg}`} alt="" />
+            <img  src={`https://book-logger-app.onrender.com/images/${avatarImg}`} alt="" />
             <div className="content">
               <Link to={`/profile/${userId}`}>Profile</Link>
               <Link onClick={handleLogout}>Log Out</Link>

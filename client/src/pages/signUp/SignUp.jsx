@@ -74,7 +74,7 @@ const SignUp = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:8800/signup", JSON.stringify({username: userName,password:pwd}),
+            const res = await axios.post("https://book-logger-app.onrender.com/signup", JSON.stringify({username: userName,password:pwd}),
             {
                 headers:{'Content-Type':'application/json'},
                 withCredentials:true

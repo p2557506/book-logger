@@ -54,7 +54,7 @@ const upload = multer({
 //Middleware to accept json as body object to requests
 app.use(express.json())
 app.use(cookeieParser())
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'https://booklogger.netlify.app'}));
 app.use(express.static("public"));
 
 //JWT Section

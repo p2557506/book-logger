@@ -47,9 +47,9 @@ const Book = () => {
     useEffect(()=>{
         const fetchAllBacklog = async  () =>{
             try {
-                const resBacklog = await axios.get("http://localhost:8800/backlogOrders/" + userId)
-                const resWishlist = await axios.get("http://localhost:8800/wishlistOrders/" + userId)
-                const resArchive = await axios.get("http://localhost:8800/completedOrders/" + userId)
+                const resBacklog = await axios.get("https://book-logger-app.onrender.com/backlogOrders/" + userId)
+                const resWishlist = await axios.get("https://book-logger-app.onrender.com/wishlistOrders/" + userId)
+                const resArchive = await axios.get("https://book-logger-app.onrender.com/completedOrders/" + userId)
                 setBacklog(resBacklog.data)
                 setWishlist(resWishlist.data)
                 setArchive(resArchive.data)
@@ -84,7 +84,7 @@ const Book = () => {
                 
             
                 //add book in backlog
-                const res = await axios.post("http://localhost:8800/backlogOrderPush/", bookie);
+                const res = await axios.post("https://book-logger-app.onrender.com/backlogOrderPush/", bookie);
                 console.log(res);
 
             
@@ -98,7 +98,7 @@ const Book = () => {
 
     const handleBookBacklogDelete = async () => {
         try {
-            const res = await axios.delete("http://localhost:8800/removeBookBacklog/" +bookId);
+            const res = await axios.delete("https://book-logger-app.onrender.com/removeBookBacklog/" +bookId);
         } catch (err) {
             console.log(err)
         }
@@ -107,7 +107,7 @@ const Book = () => {
     const handleWishlistOrder = async () =>{
         
         try {
-            const res = await axios.post("http://localhost:8800/wishlistOrderPush", bookie);
+            const res = await axios.post("https://book-logger-app.onrender.com/wishlistOrderPush", bookie);
             
         } catch (err) {
             console.log(err)
@@ -117,7 +117,7 @@ const Book = () => {
 
     const handleBookWishlistDelete = async () => {
         try {
-            const res = await axios.delete("http://localhost:8800/removeBookWishlist/" +bookId);
+            const res = await axios.delete("https://book-logger-app.onrender.com/removeBookWishlist/" +bookId);
         } catch (err) {
             console.log(err)
         }
@@ -126,7 +126,7 @@ const Book = () => {
     const handleCompletedOrder = async () =>{
         
         try {
-            const res = await axios.post("http://localhost:8800/completedOrderPush", bookie);
+            const res = await axios.post("https://book-logger-app.onrender.com/completedOrderPush", bookie);
             
         } catch (err) {
             console.log(err)
@@ -136,7 +136,7 @@ const Book = () => {
 
     const handleBookCompletedDelete = async () => {
         try {
-            const res = await axios.delete("http://localhost:8800/removeBookCompleted/" +bookId);
+            const res = await axios.delete("https://book-logger-app.onrender.com/removeBookCompleted/" +bookId);
         } catch (err) {
             console.log(err)
         }
@@ -148,7 +148,7 @@ const Book = () => {
     useEffect(() => {
         const fetchSpecificBook = async ()=> {
             try {
-                const res = await axios.get("http://localhost:8800/books/"+ bookId);
+                const res = await axios.get("https://book-logger-app.onrender.com/books/"+ bookId);
                 
                 console.log(res.data[0]);
                 setBook(res.data)

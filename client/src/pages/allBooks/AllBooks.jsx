@@ -57,7 +57,7 @@ const AllBooks = () => {
     useEffect(()=>{
         const fetchAllBooks = async  () =>{
             try {
-                const res = await axios.get(`http://localhost:8800/books`)
+                const res = await axios.get(`https://book-logger-app.onrender.com/books`)
                 console.log(res.data)
                 setBooks(res.data)
                 setBookie(res.data[0])

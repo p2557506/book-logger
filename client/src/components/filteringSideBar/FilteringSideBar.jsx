@@ -49,19 +49,19 @@ const FilteringSideBar = (props) => {
     useEffect(()=>{
       const getGenreType = async () =>{
         try {
-          const resSci = await axios.get("http://localhost:8800/genre/" + "sci-fi")
+          const resSci = await axios.get("https://book-logger-app.onrender.com/genre/" + "sci-fi")
           setGenreSciCount(resSci.data[0].count)
           
-          const resFan = await axios.get("http://localhost:8800/genre/" + "fantasy")
+          const resFan = await axios.get("https://book-logger-app.onrender.com/genre/" + "fantasy")
           setGenreFanCount(resFan.data[0].count)
           
-          const resRel = await axios.get("http://localhost:8800/genre/" + "religion")
+          const resRel = await axios.get("https://book-logger-app.onrender.com/genre/" + "religion")
           setGenreRelCount(resRel.data[0].count)
           
-          const resBio = await axios.get("http://localhost:8800/genre/" + "biography")
+          const resBio = await axios.get("https://book-logger-app.onrender.com/genre/" + "biography")
           setGenreBioCount(resBio.data[0].count)
 
-          const resComic = await axios.get("http://localhost:8800/genre/" + "comic")
+          const resComic = await axios.get("https://book-logger-app.onrender.com/genre/" + "comic")
           setGenreComicCount(resComic.data[0].count)
 
 

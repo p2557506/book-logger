@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: 'http://localhost:8800'
+    baseURL: 'https://book-logger-app.onrender.com'
 })

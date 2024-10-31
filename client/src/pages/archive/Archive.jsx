@@ -26,7 +26,7 @@ const Archive = () => {
     useEffect(()=>{
         const fetchAllArchive = async  () =>{
             try {
-                const res = await axios.get("http://localhost:8800/completedOrders/" + userId)
+                const res = await axios.get("https://book-logger-app.onrender.com/completedOrders/" + userId)
                 console.log(res.data)
                 setArchive(res.data)
             } catch (err) {
