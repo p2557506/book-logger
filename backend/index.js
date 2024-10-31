@@ -19,13 +19,21 @@ const app = express();
 //const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
  const db = mysql.createConnection({
     connectionLimit: 10,
-    host: '0.0.0.0',
-    user: 'root',
-    password: 'password',
-    database: 'book_logger_db',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     debug: false,
-    port: '3306'
+    port: process.env.DB_PORT
  }) 
+
+ db.connect((err) => {
+    if (err) {
+        console.error('Database connection error:', err);
+    } else {
+        console.log('Connected to the database');
+    }
+});
 
 //Local now no longer is functional
 //const db = mysql.createConnection(urlDB)
