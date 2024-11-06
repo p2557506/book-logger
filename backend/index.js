@@ -66,12 +66,13 @@ const upload = multer({
     
 //   };
 
+app.use(cors({
+    origin: 'https://booklogger.netlify.app', // Replace this with your frontend URL
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true, // Include credentials if you’re working with cookies/sessions
+}));
 app.use(express.json())
 app.use(cookeieParser())
-app.use(cors({
-    origin: 'https://booklogger.netlify.app',
-    credentials: true // This will set the Access-Control-Allow-Credentials header to true
-}));
 
 app.use(express.static("public"));
 
@@ -382,7 +383,10 @@ app.post("/signup", (req,res)=>{
     })
 })
 
-app.post("/auth", async (req,res) =>{
+app.post("/auth", cors({
+    origin: 'https://booklogger.netlify.app', // Specify frontend URL
+    credentials: true,
+}), async (req,res) =>{
     const q = "SELECT * FROM users WHERE username = ?"
     const username = req.body.username;
     const password = req.body.password;

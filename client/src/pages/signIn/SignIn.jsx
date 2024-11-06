@@ -20,6 +20,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 
 const Login = () => {
+    axios.defaults.withCredentials = true
     //Focus on user inputs and error for accessibility announcer
     const userRef = useRef();
     const errRef = useRef();

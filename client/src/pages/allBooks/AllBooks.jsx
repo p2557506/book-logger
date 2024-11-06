@@ -18,6 +18,7 @@ import ReactPaginate from "react-paginate";
 
 const AllBooks = () => {
 
+    axios.defaults.withCredentials = true
     const {titleTerm,setTitleterm,genreTerm,setGenreTerm} = useAuth();
     
     const [books,setBooks] = useState([]);
