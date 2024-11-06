@@ -386,7 +386,11 @@ app.post("/signup", (req,res)=>{
     })
 })
 
-app.post("/auth", cors({
+app.post('/auth', (req, res) => {
+    res.status(200).json({ message: 'Auth endpoint reachable' });
+});
+
+/*app.post("/auth", cors({
     origin: 'https://booklogger.netlify.app', // Specify frontend URL
     credentials: true,
 }), async (req,res) =>{
@@ -429,7 +433,7 @@ app.post("/auth", cors({
         }
     })
     
-})
+})*/
 
 app.get("/logout" , (req,res) => {
     res.clearCookie('token')
