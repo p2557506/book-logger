@@ -14,6 +14,17 @@ const saltRounds = 10
 
 const app = express();
 
+app.use(cors({
+    origin: 'https://booklogger.netlify.app', // Replace this with your frontend URL
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'], // Include credentials if you’re working with cookies/sessions
+}));
+app.use(express.json())
+app.use(cookeieParser())
+
+app.use(express.static("public"));
+
 //URL For railway
 //const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
 //const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
@@ -66,15 +77,7 @@ const upload = multer({
     
 //   };
 
-app.use(cors({
-    origin: 'https://booklogger.netlify.app', // Replace this with your frontend URL
-    methods: 'GET, POST, PUT, DELETE',
-    credentials: true, // Include credentials if you’re working with cookies/sessions
-}));
-app.use(express.json())
-app.use(cookeieParser())
 
-app.use(express.static("public"));
 
 //JWT Section
 //Create Token
