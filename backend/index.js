@@ -386,54 +386,50 @@ app.post("/signup", (req,res)=>{
     })
 })
 
-app.post('/auth', (req, res) => {
+/*app.post('/auth', (req, res) => {
     res.status(200).json({ message: 'Auth endpoint reachable' });
+});*/
+
+const queryDatabase = (q, params) => {
+    return new Promise((resolve, reject) => {
+        db.query(q, params, (err, data) => {
+            if (err) reject(err);
+            else resolve(data);
+        });
+    });
+};
+
+app.post("/auth", cors({
+    origin: 'https://booklogger.netlify.app',
+    credentials: true,
+}), async (req, res) => {
+    try {
+        const q = "SELECT * FROM users WHERE username = ?";
+        const { username, password } = req.body;
+
+        const data = await queryDatabase(q, [username]);
+
+        if (data.length > 0) {
+            bcrypt.compare(password, data[0].password, (err, result) => {
+                if (result) {
+                    const payload = { "username": data[0].username, "id": data[0].id, "avatarImg": data[0].avatarImg };
+                    const token = jwt.sign(payload, "changelater", { expiresIn: '1d' });
+
+                    res.cookie("token", token, { maxAge: 60 * 60 * 24 * 30 * 1000, httpOnly: true, secure: true });
+                    res.json(data[0]);
+                } else {
+                    res.status(400).json({ err: "Wrong Combination" });
+                }
+            });
+        } else {
+            res.status(400).json({ err: "User Doesn't Exist" });
+        }
+    } catch (error) {
+        console.error("Database error:", error);
+        res.status(500).json({ err: "Server error" });
+    }
 });
 
-/*app.post("/auth", cors({
-    origin: 'https://booklogger.netlify.app', // Specify frontend URL
-    credentials: true,
-}), async (req,res) =>{
-    const q = "SELECT * FROM users WHERE username = ?"
-    const username = req.body.username;
-    const password = req.body.password;
-    //Check if user exists
-
-    await db.query(q,[username],(err,data)=>{
-       
-        if(err){
-            return res.json(err)
-
-        }
-        if(data.length > 0){
-            bcrypt.compare(password,data[0].password,(err,result) => {
-                if(result){
-                    //data[0] is user in this scenario
-                    //Access token created using username and id with secret key
-                    const payload = {"username":data[0].username,"id":data[0].id,"avatarImg":data[0].avatarImg}
-                    const token = jwt.sign(payload, "changelater",{expiresIn:'1d'})
-
-                    //Access token stores as cookie to remember user
-                    res.cookie("token",token,{
-                        maxAge: 60 * 60 * 24 * 30 * 1000,
-                        
-                    })
-                    
-                    res.json(data[0]);
-                    //JWT Token when browser is closed stay logged in
-                    //Never store cookie on local or session storage
-                } else{
-                    res.status(400).json({err:"Wrong Combination"})
-                } 
-            });
-
-            
-        } else{
-            res.status(400).json({err:"User Doesn't Exist"})
-        }
-    })
-    
-})*/
 
 app.get("/logout" , (req,res) => {
     res.clearCookie('token')
