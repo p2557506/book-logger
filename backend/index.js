@@ -15,7 +15,7 @@ const saltRounds = 10
 const app = express();
 
 app.use(cors({
-    origin: 'https://booklogger.netlify.app', // Replace this with your frontend URL
+    origin: 'https://book-logger.netlify.app', // Replace this with your frontend URL
     methods: 'GET, POST, PUT, DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'], // Include credentials if you’re working with cookies/sessions
@@ -64,7 +64,7 @@ const upload = multer({
 
 //Middleware to accept json as body object to requests
 
-// const allowedOrigins = ['https://booklogger.netlify.app'];
+// const allowedOrigins = ['https://book-logger.netlify.app'];
 // const corsOptions = {
 //     origin: function (origin, callback) {
 //       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -400,7 +400,7 @@ const queryDatabase = (q, params) => {
 };
 
 app.post("/auth", cors({
-    origin: 'https://booklogger.netlify.app',
+    origin: 'https://book-logger.netlify.app',
     credentials: true,
 }), async (req, res) => {
     try {
