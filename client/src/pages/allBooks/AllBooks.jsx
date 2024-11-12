@@ -59,11 +59,11 @@ const AllBooks = () => {
         const fetchAllBooks = async  () =>{
             try {
                 const res = await axios.get(`https://book-logger-app.onrender.com/books`)
-                console.log(res.data)
-                setBooks(res.data)
+                console.log("Fetched books:",res.data)
+                setBooks(Array.isArray(res.data) ? res.data : []);
                 setBookie(res.data[0])
             } catch (err) {
-                console.log(err)
+                console.error("error fetching:", err)
             }
         }
         fetchAllBooks()
@@ -80,10 +80,10 @@ const AllBooks = () => {
                 
                     <div className="booksContainer">
                         
-                        {books.filter((book) =>{
+                    {Array.isArray(books) && books.filter((book) =>{
                             
                             if(nameTerm == "" && genreTerm == ""){
-                                return book;
+                                return true;
                             }
                             
                             
