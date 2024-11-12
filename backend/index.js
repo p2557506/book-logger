@@ -100,14 +100,14 @@ const createTokens = (user) => {
 const validateToken = (req,res,next) => {
     const token = req.cookies.token
 
-    if(!token) return res.status(400).json({err:"User Not Authenticated"})
+    if(!token) return res.status(401).json({err:"User Not Authenticated"})
 
     
         //Boolean
         jwt.verify(token,"changelater", (err,decoded) => {
 
             if(err){
-                return res.json({err: "token please boay"})
+                return res.status(403).json({err: "Invalid or expired token"})
             } else{
                 
                 req.username = decoded.username
@@ -415,7 +415,7 @@ app.post("/auth", cors({
                     const payload = { "username": data[0].username, "id": data[0].id, "avatarImg": data[0].avatarImg };
                     const token = jwt.sign(payload, "changelater", { expiresIn: '1d' });
 
-                    res.cookie("token", token, { maxAge: 60 * 60 * 24 * 30 * 1000, httpOnly: true, secure: true });
+                    res.cookie("token", token, { maxAge: 60 * 60 * 24 * 30 * 1000, httpOnly: true, secure: process.env.NODE_ENV === 'production' });
                     res.json(data[0]);
                 } else {
                     res.status(400).json({ err: "Wrong Combination" });
