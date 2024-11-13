@@ -11,6 +11,7 @@ const Navbar = () => {
   axios.defaults.withCredentials = true
   //User details
   
+  const[user, setUser] = useState([])
  
   
 
@@ -23,6 +24,7 @@ const Navbar = () => {
         try {
             const res = await axios.get("https://book-logger-app.onrender.com/profile")
             if(res.data.status == "logged in"){
+              setUser(res.data)
               setAuth(true)
               setUsername(res.data.username)
               setAvatarImg(res.data.avatarImg)
@@ -87,7 +89,7 @@ const handleActiveClick = () => {
           {!auth ? <div className="btns"><Link className="logBtn" to={"/signin"}>Log In</Link><Link className="signUpBtn" to={"/signup"}>Sign Up</Link></div> : 
           <div  className="dropdown">
             
-            <img  src={`https://book-logger-app.onrender.com/images/${avatarImg}`} alt="" />
+            <img  src={ user.avatarImg ? `https://book-logger-app.onrender.com/images/${avatarImg}` : 'defaulavatar.png'} alt="" />
             <div className="content">
               <Link to={`/profile/${userId}`}>Profile</Link>
               <Link onClick={handleLogout}>Log Out</Link>

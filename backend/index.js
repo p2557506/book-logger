@@ -415,7 +415,7 @@ app.post("/auth", cors({
                     const payload = { "username": data[0].username, "id": data[0].id, "avatarImg": data[0].avatarImg };
                     const token = jwt.sign(payload, "changelater", { expiresIn: '1d' });
 
-                    res.cookie("token", token, { maxAge: 60 * 60 * 24 * 30 * 1000, httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+                    res.cookie("token", token, { maxAge: 60 * 60 * 24 * 30 * 1000, httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'none', path: '/', domain: '.netlify.app' });
                     res.json(data[0]);
                 } else {
                     res.status(400).json({ err: "Wrong Combination" });
