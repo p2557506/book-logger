@@ -4,8 +4,7 @@
 
 ## Check out the site here!
 
-1) Open link in tab to enable server side functionality of the site
-Backend Server: https://book-logger-app.onrender.com
+1) Open link in tab to enable server side functionality of the site: Backend Server: https://book-logger-app.onrender.com
 
 2)Open link in another tab to check out the site
 Client Side: https://book-logger.netlify.app/
