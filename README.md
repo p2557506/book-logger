@@ -8,6 +8,8 @@
 
 2) Open link in another tab to check out the site: https://book-logger.netlify.app/
 
+3) Demo account provided: Username: demo | Password: Password123!
+
 ## Purpose and Goals of Project
 
 - I developed this website to develop my skills with backend and frontend technologies and allow me to track the books I read
