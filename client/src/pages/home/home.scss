@@ -1,6 +1,7 @@
 *{
     padding: 0;
         margin: 0;
+        overflow-x: hidden;
 }
 .home{
     height: 100vh;
@@ -8,8 +9,9 @@
     .introSection{
         h1{
             color: white;
+            font-size: 50px;
         }
-        color: lightgray;
+        color: white;
         height: 50%;
         display: flex;
         flex-direction: column;
@@ -17,6 +19,7 @@
         justify-content: center;
         background-color: #6B6B6B;
         gap: 0.5rem;
+        padding: 3rem;
         h1{
             
         }
@@ -30,7 +33,7 @@
         .buttons{
             display: flex;
             gap: 1rem;
-            .brwsBtn{
+            .signUpBtn{
                 color: white;
                 padding: 0.5rem;
                 font-size: 1rem;
@@ -45,7 +48,7 @@
                     background-color: blue;
                 }
             }
-            .lrnBtn{
+            .logInBtn{
                 color: white;
                 padding: 0.5rem;
                 font-size: 1rem;
@@ -68,7 +71,7 @@
     }
     .websiteDescSection{
         display: flex;
-        padding: 2rem;
+        padding: 3rem;
         gap: 1rem;
         background-color: #6B6B6B;
         border-top: 1px solid darkgray;
@@ -82,6 +85,8 @@
 
             .icon{
                 color: white;
+                
+                
             }
 
             h1{
@@ -173,4 +178,37 @@
         }
     }
 }
+//Responsivity
+@media (max-width: 990px){
+    .websiteDescSection{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        
+        background-color: #6B6B6B;
+        border-top: 1px solid darkgray;
+        
+        .desc{
+            flex: 0.33;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
 
+            .icon{
+                color: white;
+                
+                
+            }
+
+            h1{
+                color: white;
+            }
+
+            p{
+                font-size: 1.25rem;
+                color: lightgray;
+            }
+        }
+    }
+}

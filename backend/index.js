@@ -14,8 +14,10 @@ const saltRounds = 10
 
 const app = express();
 
+
+
 app.use(cors({
-    origin: 'https://book-logger.netlify.app', // Replace this with your frontend URL
+    origin: 'http://localhost:3000',//'https://book-logger.netlify.app', // Replace this with your frontend URL
     methods: 'GET, POST, PUT, DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'], // Include credentials if you’re working with cookies/sessions
@@ -28,7 +30,7 @@ app.use(express.static("public"));
 //URL For railway
 //const urlDB = `mysql://root:vauhnLFZUafxImRXqknKEQRhnfLfCiDZ@mysql.railway.internal:3306/railway`
 //const urlDB = `mysql://root:password@localhost:3306/book_logger_db`
- const db = mysql.createConnection({
+ /* const db = mysql.createConnection({
     connectionLimit: 10,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -36,6 +38,13 @@ app.use(express.static("public"));
     database: process.env.DB_NAME,
     debug: false,
     port: process.env.DB_PORT
+ })  */
+ const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password",
+    database: "book_logger_db",
+    
  }) 
 
  db.connect((err) => {
@@ -485,6 +494,6 @@ app.get("/genre/:type", (req,res)=>{
 
 const port = process.env.PORT || 8800
 
-app.listen(port, ()=>{
+app.listen(8800, ()=>{
     console.log("Wishlist,Backlog and Archive Books")
 })

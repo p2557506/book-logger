@@ -21,6 +21,9 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Login = () => {
     axios.defaults.withCredentials = true
+
+    const {avatarImg,setAvatarImg} = useAuth();
+
     //Focus on user inputs and error for accessibility announcer
     const userRef = useRef();
     const errRef = useRef();
@@ -69,7 +72,7 @@ const Login = () => {
         
 
         try {
-            const res = await axios.post("https://book-logger-app.onrender.com/auth", JSON.stringify({username: userName,password:pwd}),
+            const res = await axios.post("http://localhost:8800/auth", JSON.stringify({username: userName,password:pwd}),
             {
                 headers:{'Content-Type':'application/json'},
                 withCredentials:true
@@ -79,6 +82,7 @@ const Login = () => {
 
             console.log(JSON.stringify(res?.data))
             setUserId(res.data.id)
+            setAvatarImg(res.data.avatarImg)
             setAuth(true);
             navigate(from, {replace:true});
             

@@ -20,54 +20,45 @@ const Home = () => {
     <div className="home">
         <Navbar/>
         <div className="introSection">
-          <h1 className="logo">BookLogger</h1>
+          <h1 className="logo">Read any good books lately?</h1>
           <h2>Organize your book library</h2>
           <p className="websiteDesc">
-          BookLogger is a site that allows you to track the books your reading,
-          the books that you want to read and the books you have read.
+          BookLogger is a site that allows you to track the books you're reading,
+          the books that you wish to read and the books that you have finished.
           </p>
           <div className="buttons"> 
-            <Link to={"/browse"} className="brwsBtn">Browse Books</Link>
-            <Link to={"/learn"}  className="lrnBtn">Learn More</Link>
+            <Link to={"/browse"} className="signUpBtn">Sign Up</Link>
+            <Link to={"/learn"}  className="logInBtn">Log In</Link>
           </div>
         </div>
         <div className="websiteDescSection">
           <div className="desc">
             <div className="icon">
-              <StarRateIcon/>
+              <StarRateIcon style={{fontSize : 50}}/>
 
             </div>
             <h1>Rate your Books</h1>
-            <p>Rate and review your favorite (and not so favorite) games as you add them to your collection.</p>
+            <p>Rate and review your favorite (and not so favorite) books as you add them to your collection.</p>
           </div>
           <div className="desc">
             <div className="icon">
 
-              <BookmarkIcon/>
+              <BookmarkIcon style={{fontSize : 50}}/>
             </div>
             <h1>What will you read next?</h1>
-            <p>What do your friends think of the latest games? Check out their reviews and ratings by following them on Grouvee.</p>
+            <p>Plan your next reading adventure. Use the Wish List shelf to track the books you hope to own one day. </p>
           </div>
           <div className="desc">
             <div className="icon">
-              <AllInboxIcon/>
+              <AllInboxIcon style={{fontSize : 50}}/>
 
             </div>
             <h1>Track your Backlog</h1>
-            <p>Keep track of your video game backlog. Use the default Played, Playing, Backlog and Wish List shelves created for you, or create your own virtual shelves to categorize your games however you want. You can also automatically import your Steam library to easily manage your collection.</p>
+            <p>Keep track of your book backlog. Use the Reading, Archive, Backlog and Wish List shelves created for you, to easily manage your collection.</p>
           </div>
         </div>
         {/**Popular category gives random 10 books */}
-        <div className="categoryContainer">
-          <h1>Popular Categories</h1>
-          <div className="categoriesSection">
-            <div className="categoryAdv">Adventure</div>
-            <div className="categoryFan">Fantasy</div>
-            <div className="categorySci">Sci-Fi</div>
-            <div className="categoryCom">Comic</div>
-
-          </div>
-        </div>
+        
         <Footer/>
     </div>
   )

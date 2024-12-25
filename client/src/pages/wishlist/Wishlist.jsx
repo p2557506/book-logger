@@ -26,7 +26,7 @@ const Wishlist = () => {
     useEffect(()=>{
         const fetchAllWishlist = async  () =>{
             try {
-                const res = await axios.get("https://book-logger-app.onrender.com/wishlistOrders/" + userId)
+                const res = await axios.get("http://localhost:8800/wishlistOrders/" + userId)
                 console.log(res.data)
                 setWishlist(res.data)
             } catch (err) {

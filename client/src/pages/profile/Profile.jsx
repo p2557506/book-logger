@@ -39,7 +39,7 @@ const Profile = () => {
         
         const formdata = new FormData();
         formdata.append("image", file)
-        axios.post("https://book-logger-app.onrender.com/upload/" + userId, formdata)
+        axios.post("http://localhost:8800/upload/" + userId, formdata)
         .then(res => {
             if(res.data.Status == "win"){
                 console.log("success") 
@@ -58,7 +58,7 @@ const Profile = () => {
         const fetchUserProfile = async  (e) =>{
           
             try {
-                const res = await axios.get("https://book-logger-app.onrender.com/profile")
+                const res = await axios.get("http://localhost:8800/profile")
                 if(res.data.status == "logged in"){
                   setAuth(true)
                   setUsername(res.data.username)
@@ -89,7 +89,7 @@ const Profile = () => {
     const handleUpdateUser = async () => {
         
         try {
-            const res = await axios.put("https://book-logger-app.onrender.com/profile/" + userId,profile)
+            const res = await axios.put("http://localhost:8800/profile/" + userId,profile)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -130,7 +130,7 @@ const Profile = () => {
                 <label for="fileUpload">Avatar</label>
             <div className="avatarBox">
 
-                <img alt="" src={`https://book-logger-app.onrender.com/images/${avatarImg}`}/>
+                <img alt="" src={`http://localhost:8800/images/${avatarImg}`}/>
                 <input 
                 id="fileUpload"
                 type="file"

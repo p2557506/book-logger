@@ -3,27 +3,28 @@ nav{
     color: white;
     display: flex;
     justify-content: space-around;
+    
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 0;
+
 
 .part1{
-    h1{
-        
-    }
-}
-.part2{
     .discoverOptions{
         display: flex;
         list-style: none;
         flex: wrap;
-        gap: 0.25rem;
+        gap: 1rem;
         li{
-            border: 1px solid gray;
-            padding: 0.25rem;
+            font-size: 20px;
+            cursor: pointer;
+            
         }
     }
+    p{
+        color: lightgray;
+    }
 }
-.part3{
+.part2{
     .contactOptions{
         display: flex;
         
@@ -31,6 +32,12 @@ nav{
         gap: 0.25rem;
         li{
             list-style: none;
+            
+
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
             
         }
     }
