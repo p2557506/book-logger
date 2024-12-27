@@ -3,6 +3,9 @@
     padding: 0;
     
 }
+.navbar *{
+    background-color: inherit;
+}
 .navbar{
     
     display: flex;
@@ -49,6 +52,7 @@
         display: flex;
         align-items: center;
         gap: 10rem;
+        
         ul{
             list-style: none;
             display: flex;
@@ -165,7 +169,7 @@
        
         flex-direction: column;
         background-color: gray;
-       
+        position: absolute;
         top: 0;
         
         width: 100%;
@@ -204,10 +208,12 @@
             }
         }
         .navOptions{
-            display: none;
-            width: 100%;
-            align-items: flex-start;
-            margin-top: 1rem;
+            display: flex; /* Default state */
+            align-items: center;
+            gap: 10rem;
+            overflow: hidden; /* Prevent overflow */
+            max-height: 0; /* Initially collapsed */
+            transition: max-height 0.5s ease-in-out;
 
             
             
@@ -330,6 +336,7 @@
         }
         .navOptions.active{
             display: flex;
+            max-height: 500px;
         }
 
 

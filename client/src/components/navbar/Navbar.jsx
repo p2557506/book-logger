@@ -82,7 +82,7 @@ const handleActiveClick = () => {
         <div className="navOptions">
           <ul>
               <li><Link to={"/"}>Home</Link></li>
-              <li><Link to={"/browse"}>Browse</Link></li>
+              <li><Link to={"/browse"}>Books</Link></li>
               
           </ul>
 

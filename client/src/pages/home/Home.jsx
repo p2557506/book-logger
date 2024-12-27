@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import axios from '../../api/axios';
 
 import { Link } from 'react-router-dom';
+
 const Home = () => {
 
   
@@ -20,6 +21,7 @@ const Home = () => {
     <div className="home">
         <Navbar/>
         <div className="introSection">
+          
           <h1 className="logo">Read any good books lately?</h1>
           <h2>Organize your book library</h2>
           <p className="websiteDesc">
@@ -34,7 +36,7 @@ const Home = () => {
         <div className="websiteDescSection">
           <div className="desc">
             <div className="icon">
-              <StarRateIcon style={{fontSize : 50}}/>
+              <StarRateIcon style={{fontSize : 50, color: 'gold'}}/>
 
             </div>
             <h1>Rate your Books</h1>
@@ -43,14 +45,14 @@ const Home = () => {
           <div className="desc">
             <div className="icon">
 
-              <BookmarkIcon style={{fontSize : 50}}/>
+              <BookmarkIcon style={{fontSize : 50, color: 'crimson'}}/>
             </div>
             <h1>What will you read next?</h1>
             <p>Plan your next reading adventure. Use the Wish List shelf to track the books you hope to own one day. </p>
           </div>
           <div className="desc">
             <div className="icon">
-              <AllInboxIcon style={{fontSize : 50}}/>
+              <AllInboxIcon style={{fontSize : 50, color: '#1b5e20'}}/>
 
             </div>
             <h1>Track your Backlog</h1>
