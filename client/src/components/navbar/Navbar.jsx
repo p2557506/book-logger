@@ -79,6 +79,7 @@ const handleActiveClick = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </a>
+
         <div className="navOptions">
           <ul>
               <li><Link to={"/"}>Home</Link></li>
@@ -86,18 +87,24 @@ const handleActiveClick = () => {
               
           </ul>
 
-          {!auth ? (
+          
           <div className="btns">
-            {/* Conditionally render buttons based on the current route */}
-            {location.pathname !== '/signin' && (
-              <Link className="logBtn" to={"/signin"}>Log In</Link>
-            )}
-            {location.pathname !== '/signup' && (
-              <Link className="signUpBtn" to={"/signup"}>Sign Up</Link>
-            )}
-            </div>
-          ) : (
-            
+          {!auth && location.pathname === '/' && (
+            <Link className="logBtn" to="/signin">Log In</Link>
+          )}
+
+          {!auth && location.pathname !== '/' && (
+            <>
+              {location.pathname !== '/signin' && (
+                <Link className="logBtn" to="/signin">Log In</Link>
+              )}
+              {location.pathname !== '/signup' && (
+                <Link className="signUpBtn" to="/signup">Sign Up</Link>
+              )}
+            </>
+          )}
+
+            {auth && (
             <div  className="dropdown">
             
               <img  src={`http://localhost:8800/images/${avatarImg}`} alt="" />
@@ -110,9 +117,10 @@ const handleActiveClick = () => {
             </div>
           )}
         </div>  
+        </div>
     </nav>
-  )
+  );
   
-}
+};
 
 export default Navbar
