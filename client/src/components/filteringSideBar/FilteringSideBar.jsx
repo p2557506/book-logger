@@ -4,41 +4,28 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import axios from '../../api/axios';
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 const FilteringSideBar = (props) => {
 
   const {titleTerm,setTitleterm,genreTerm,setGenreTerm} = useAuth();
 
-    const handleNameSearch = props.handleNameSearch
-    const handleGenreSearch = props.handleGenreSearch
-
+  //Props being passed to filer bar
+    const handleNameSearch = props.handleNameSearch;
+    const handleGenreSearch = props.handleGenreSearch;
+    const handleClearInput = props.handleClearInput;
+    const inputValue = props.inputValue
     //Button clicks for genres
 
-    const handleFantasyClick = (e) =>{
+    const genreButtons = [
+        { label: "Fantasy", action: () => setGenreTerm("fantasy") },
+        { label: "Adventure", action: () => setGenreTerm("adventure") },
+        { label: "Biography", action: () => setGenreTerm("biography") },
+        { label: "Sci-Fi", action: () => setGenreTerm("sci-fi") },
+        { label: "Comic", action: () => setGenreTerm("comic") },
+        { label: "Religion", action: () => setGenreTerm("religion") },
+    ];
 
-      setGenreTerm("fantasy")
-    }
-    const handleAdventureClick = (e) =>{
-
-      setGenreTerm("adventure")
-    }
-    const handleBiographyClick = (e) =>{
-
-      setGenreTerm("biography")
-    }
-    const handleSciFiClick = (e) =>{
-
-      setGenreTerm("sci-fi")
-    }
-
-    const handleComicClick = (e) =>{
-
-      setGenreTerm("comic")
-    }
-
-    const handleReligionClick = (e) =>{
-
-      setGenreTerm("religion")
-    }
+    
 
     const [genreSciCount,setGenreSciCount] = useState()
     const [genreFanCount,setGenreFanCount] = useState()
@@ -76,8 +63,20 @@ const FilteringSideBar = (props) => {
   return (
     <div className="filteringToolContainer">
         <div className="inputBox">
-        <input type="text" placeholder='Search by name ...' onChange={handleNameSearch}/>
-          <SearchIcon/>
+          <input
+            type="text"
+            placeholder="Search by name ..."
+            onChange={handleNameSearch}
+            value={inputValue}
+          />
+            {inputValue ? (
+          <CloseIcon
+            style={{ cursor: 'pointer' }}
+            onClick={handleClearInput}
+          />
+        ) : (
+          <SearchIcon />
+        )}
         </div>
         
         <div className="genreFilterBox">
@@ -87,12 +86,9 @@ const FilteringSideBar = (props) => {
               <SearchIcon/>
             </div>
             <ul>
-                <li onClick={handleAdventureClick}>Adventure</li>
-                <li  onClick={handleFantasyClick}>Fantasy <p>{genreFanCount}</p></li>
-                <li onClick={handleBiographyClick}>Biography <p>{genreBioCount}</p></li>
-                <li onClick={handleReligionClick}>Religion <p>{genreRelCount}</p></li>
-                <li onClick={handleSciFiClick}>Sci-Fi <p>{genreSciCount}</p></li>
-                <li onClick={handleComicClick}>Comic <p>{genreComicCount}</p></li>
+            {genreButtons.map((genre, index) => (
+                        <li key={index} onClick={genre.action}>{genre.label}</li>
+                    ))}
             </ul>
         </div>
     </div>

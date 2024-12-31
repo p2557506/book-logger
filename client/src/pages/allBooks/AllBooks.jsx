@@ -27,6 +27,8 @@ const AllBooks = () => {
 
     const [nameTerm,setNameTerm] = useState("");
 
+    const [inputValue, setInputValue] = useState("");
+
     //PAGINATION
     const [pageNumber,setPageNumber] = useState(0);
 
@@ -45,8 +47,15 @@ const AllBooks = () => {
 
     const handleNameSearch = (e) =>{
         setNameTerm(e.target.value);
+        setInputValue(e.target.value); // Update input value state
+        
 
     }
+
+    const handleClearInput = () => {
+        setNameTerm("");
+        setInputValue("");
+    };
 
     const handleGenreSearch = (e) =>{
         setGenreTerm(e.target.value);
@@ -99,7 +108,12 @@ const AllBooks = () => {
                         ))}
                     </div>
                     <div className="filterBar">
-                        <FilteringSideBar handleNameSearch = {handleNameSearch} handleGenreSearch = {handleGenreSearch}/>
+                        <FilteringSideBar
+                         handleNameSearch = {handleNameSearch}
+                         handleGenreSearch = {handleGenreSearch}
+                         handleClearInput = {handleClearInput}
+                         inputValue = {inputValue}
+                         />
 
                     </div>
                 </div>
