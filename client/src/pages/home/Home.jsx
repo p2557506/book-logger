@@ -29,8 +29,8 @@ const Home = () => {
           the books that you wish to read and the books that you have finished.
           </p>
           <div className="buttons"> 
-            <Link to={"/browse"} className="signUpBtn">Sign Up</Link>
-            <Link to={"/learn"}  className="logInBtn">Log In</Link>
+            <Link to={"/signUp"} className="signUpBtn">Sign Up</Link>
+            <Link to={"/signIn"}  className="logInBtn">Log In</Link>
           </div>
         </div>
         <div className="websiteDescSection">

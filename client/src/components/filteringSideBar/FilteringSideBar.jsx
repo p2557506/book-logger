@@ -3,8 +3,12 @@ import "./filteringSideBar.scss"
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import axios from '../../api/axios';
+
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
+import { colors } from '@mui/material';
+
 const FilteringSideBar = (props) => {
 
   const {titleTerm,setTitleterm,genreTerm,setGenreTerm} = useAuth();
@@ -14,24 +18,39 @@ const FilteringSideBar = (props) => {
     const handleGenreSearch = props.handleGenreSearch;
     const handleClearInput = props.handleClearInput;
     const inputValue = props.inputValue
+
     //Button clicks for genres
 
     const genreButtons = [
-        { label: "Fantasy", action: () => setGenreTerm("fantasy") },
-        { label: "Adventure", action: () => setGenreTerm("adventure") },
-        { label: "Biography", action: () => setGenreTerm("biography") },
-        { label: "Sci-Fi", action: () => setGenreTerm("sci-fi") },
-        { label: "Comic", action: () => setGenreTerm("comic") },
-        { label: "Religion", action: () => setGenreTerm("religion") },
+      { label: "Fantasy", value: "fantasy" },
+      { label: "Adventure", value: "adventure" },
+      { label: "Biography", value: "biography" },
+      { label: "Sci-Fi", value: "sci-fi" },
+      { label: "Comic", value: "comic" },
+      { label: "Religion", value: "religion" },
     ];
-
-    
 
     const [genreSciCount,setGenreSciCount] = useState()
     const [genreFanCount,setGenreFanCount] = useState()
     const [genreRelCount,setGenreRelCount] = useState()
     const [genreBioCount,setGenreBioCount] = useState()
     const [genreComicCount,setGenreComicCount] = useState()
+
+
+
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  
+
+  const toggleGenreSelection = (genre) => {
+    if (selectedGenres.includes(genre)) {
+      setSelectedGenres(selectedGenres.filter((g) => g !== genre));
+      setGenreTerm(""); // Clear genre term when deselected
+    } else {
+      setSelectedGenres([...selectedGenres, genre]);
+      setGenreTerm(genre); // Set the selected genre
+    }
+  };
+    
 
     useEffect(()=>{
       const getGenreType = async () =>{
@@ -62,7 +81,7 @@ const FilteringSideBar = (props) => {
 
   return (
     <div className="filteringToolContainer">
-        <div className="inputBox">
+        <div className="inputBoxName">
           <input
             type="text"
             placeholder="Search by name ..."
@@ -81,14 +100,17 @@ const FilteringSideBar = (props) => {
         
         <div className="genreFilterBox">
             <h3>Genres</h3>
-            <div className="inputBox">
+            <div className="inputBoxGenre">
               <input type="text"  placeholder="Search by genre ..." onChange={handleGenreSearch}/>
               <SearchIcon/>
             </div>
             <ul>
             {genreButtons.map((genre, index) => (
-                        <li key={index} onClick={genre.action}>{genre.label}</li>
-                    ))}
+            <li key={index} onClick={() => toggleGenreSelection(genre.value)}>
+              {genre.label}
+              <span>{selectedGenres.includes(genre.value) && <CheckIcon style={{color : 'lightgreen'}} />}</span>
+            </li>
+          ))}
             </ul>
         </div>
     </div>

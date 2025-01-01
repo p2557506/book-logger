@@ -5,7 +5,7 @@
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: white;
       }
-      .inputBox{
+      .inputBoxName{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -29,33 +29,61 @@
         
     }
     .genreFilterBox{
-        border: solid 1px gray;
+        border: solid 2px black;
         
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+
+        .inputBoxGenre{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0rem 1rem;
+            
+            
+    
+            input{
+                background-color: #6B6B6B;
+                border: none;
+                color: white;
+                /* Ensure input text is not hidden */
+    
+                &:focus{
+                    outline: none;
+                }
+                
+            }
+    
+            
+            
+        }
         h3{
             padding: 0.5rem;
         }
 
         ul{
+            padding: 1rem;
+            
             li{
                 list-style: none;
                 cursor: pointer;
-                color: lightgray;
-                padding: 0.5rem;
+                
+                padding: 0.5rem 0;
                 display: flex;
                 justify-content: space-between;
-
-                p{
-                    background-color: indigo;
-                    padding: 0.1rem 0.8rem;
-                    border-radius: 5px;
-
-                }
+                transition: ease 0.5s;
+                color: lightgray;
+                align-items: center; /* Ensures icons don't affect alignment */
+                position: relative; /* For the check icon to not disrupt layout */
+               
+                span {
+                    position: absolute; /* Keeps the icon from affecting spacing */
+                    right: 5px; /* Adjust this value to place the icon where you want */
+                  }
 
                 &:hover{
-                    background-color: gray;
+                   
                     color: white;
                 }
             }
