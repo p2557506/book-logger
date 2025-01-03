@@ -106,10 +106,10 @@ const SignUp = () => {
                 <label htmlFor="username">
                     Username:
                     <span className={validName ? "valid" : "hide"}>
-                    <FontAwesomeIcon icon={faCheck}/>
+                    <FontAwesomeIcon icon={faCheck} className="tickIcon"/>
                     </span>
                     <span className={validName || !userName ? "hide" : "invalid"}>
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <FontAwesomeIcon icon={faTimes} className="xIcon" />
                     </span>
                 </label>
                 <input
@@ -133,10 +133,10 @@ const SignUp = () => {
                  <label htmlFor="password">
                     Password:
                     <span className={validPwd ? "valid" : "hide"}>
-                    <FontAwesomeIcon icon={faCheck}/>
+                    <FontAwesomeIcon icon={faCheck} className="tickIcon"/>
                     </span>
                     <span className={validPwd || !pwd ? "hide" : "invalid"}>
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <FontAwesomeIcon icon={faTimes}  className="xIcon"/>
                     </span>
                 </label>
                 <input
@@ -164,10 +164,10 @@ const SignUp = () => {
                  <label htmlFor="confirmPassword">
                     Confirm Password:
                     <span className={validMatch && matchPwd ? "valid" : "hide"}>
-                    <FontAwesomeIcon icon={faCheck}/>
+                    <FontAwesomeIcon icon={faCheck} className="tickIcon"/>
                     </span>
                     <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <FontAwesomeIcon icon={faTimes} className="xIcon"/>
                     </span>
                 </label>
                 <input
