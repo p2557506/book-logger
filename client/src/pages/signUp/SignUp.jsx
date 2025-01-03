@@ -1,9 +1,10 @@
 import React , { useRef,useState,useEffect } from 'react';
+import "./signUp.scss";
 
 import axios from '../../api/axios';
 import Navbar from '../../components/navbar/Navbar';
 
-import "./signUp.scss"
+
 
 import { faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 
@@ -95,12 +96,12 @@ const SignUp = () => {
   return (
     <div>
         <Navbar/>
-        <div className="main">
+        <div className="mainSignUp">
 
         
         <div className="formContainer">
             <p ref={errRef} className={errMsg ? "errmsg" : "offScreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign Up</h1>
+            <h1>Sign up with BookLogger</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                     Username:

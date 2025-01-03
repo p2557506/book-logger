@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 
 
 
-import "./signIn.scss"
+import "./signIn.scss";
 
 import { faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 
@@ -100,12 +100,12 @@ const Login = () => {
   return (
     <div>
         <Navbar/>
-        <div className="main">
+        <div className="mainSignIn">
 
         
         <div className="formContainer">
             <p ref={errRef} className={errMsg ? "errmsg" : "offScreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign in</h1>
+            <h1>Please Sign in</h1>
             <h2>{loginStatus}</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
