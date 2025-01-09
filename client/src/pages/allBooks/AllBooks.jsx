@@ -118,20 +118,21 @@ const AllBooks = () => {
                     </div>
                 </div>
                 
+
+                
+                </div>
                 <ReactPaginate
                     previousLabel={"Prev"}
                     nextLabel={"Next"}
                     pageCount={pageCount}
                     onPageChange={changePage}
                     containerClassName={"paginationBtns"}
+                    pageClassName={"pageNumbers"} // Optional: You can target numbers separately
                     previousLinkClassName={"prevBtn"}
                     nextLinkClassName={"nextBtn"}
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
-
-                
-                </div>
                 
 
       </div>
