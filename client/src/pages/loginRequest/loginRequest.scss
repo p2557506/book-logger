@@ -2,6 +2,7 @@
     height: 100vh;
     background-color: #6B6B6B;
     
+    
     .pageContent{
         display: flex;
         justify-content: space-around;
@@ -16,11 +17,22 @@
             justify-content: center;
             padding: 1rem;
             gap: 1rem;
-            background-color: lightgray;
+            background-color: slategray;
             padding: 5rem;
+            border-radius: 5px;
+
+            h1{
+                color: white;
+                background-color: slategray;
+            }
+
+            p{
+                color: lightgray;
+                background-color: slategray;
+            }
 
             a{
-                background-color: rgba(0, 0, 255, 0.7);
+                background-color: rgba(220, 20, 60, 0.8);
                 color: white;
                 text-decoration: none;
                 padding: 0.25rem 1rem;
@@ -28,7 +40,7 @@
                 transition: ease .2s;
     
                 &:hover{
-                    background-color: rgba(0, 0, 255);
+                    background-color: crimson;
                 }
             }
         }

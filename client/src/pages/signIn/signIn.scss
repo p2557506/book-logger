@@ -12,8 +12,18 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 1rem;
+    padding: 0.25rem;
     background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
+
+   
+
+    h1{
+        text-align: center;
+        padding: 1rem;
+        color: white;
+        background-color: crimson;
+    }
     .errmsg {
         background-color: lightpink;
         color: firebrick;
@@ -28,7 +38,9 @@
         flex-direction: column;
         justify-content: space-evenly;
         flex-grow: 1;
-        padding-bottom: 1rem;
+        padding: 1rem;
+        background-color: slategrey;
+        
         
 
         input[type="text"],
@@ -39,11 +51,28 @@
         font-size: 22px;
         padding: 0.25rem;
         border-radius: 0.5rem;
+        background-color: white;
         }
 
-        label,
+        label{
+            background-color: slategrey;
+            
+            span{
+
+                .tickIcon{
+                    background-color: slategrey;
+                }
+                
+                .xIcon{
+                    background-color: slategrey;
+                }
+
+                
+            }
+        }
         button {
         margin-top: 1rem;
+        
         }
 
         .instructions {
@@ -58,6 +87,7 @@
         
         .instructions > svg {
             margin-right: 0.25rem;
+            
         }
         
         .offScreen {
@@ -72,11 +102,15 @@
         .valid {
             color: limegreen;
             margin-left: 0.25rem;
+
+            
+            
         }
         
         .invalid {
             color: red;
             margin-left: 0.25rem;
+            
         }
         
         

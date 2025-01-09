@@ -20,7 +20,9 @@ const Archive = () => {
     const [archive,setArchive] = useState([]);
 
     axios.defaults.withCredentials = true;
-  const {userId,setUserId,backlogs,setBacklog} = useAuth();
+  const {userId,setUserId,backlogs,setBacklog,setGenreTerm} = useAuth();
+
+
   
   const [searchTerm,setSearchTerm] = useState("");
     useEffect(()=>{
@@ -40,6 +42,30 @@ const Archive = () => {
         setSearchTerm(e.target.value);
 
     }
+
+    //FilterBar Logic
+    const [inputValue, setInputValue] = useState("");
+
+    const [nameTerm,setNameTerm] = useState("");
+
+    const handleClearInput = () => {
+        setNameTerm("");
+        setInputValue("");
+    };
+
+    const handleNameSearch = (e) =>{
+        setNameTerm(e.target.value);
+        setInputValue(e.target.value); // Update input value state
+        
+
+    }
+
+    const handleGenreSearch = (e) =>{
+        setGenreTerm(e.target.value);
+        console.log(e.target.value)
+
+    }
+
 
     //PAGINATION
     const [pageNumber,setPageNumber] = useState(0);
@@ -88,7 +114,14 @@ const Archive = () => {
                 ))}
             </div>
             
-            <FilteringSideBar handleChange ={handleChange}/>
+            <div className="filterBar">
+                <FilteringSideBar
+                handleNameSearch = {handleNameSearch}
+                handleGenreSearch = {handleGenreSearch}
+                handleClearInput = {handleClearInput}
+                inputValue = {inputValue}
+                />
+            </div>
         </div>
         <ReactPaginate
                     previousLabel={"Prev"}
